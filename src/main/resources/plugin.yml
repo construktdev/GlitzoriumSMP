@@ -1,0 +1,10 @@
+name: GlitzoriumSMP
+version: '1.0-SNAPSHOT'
+main: de.construkter.glitzoriumSMP.GlitzoriumSMP
+api-version: '1.21'
+
+commands:
+  hub:
+    description: Gehe in die Lobby
+  lobby:
+    description: Gehe in die Lobby
