@@ -13,12 +13,10 @@ import java.util.Objects;
 public class LobbyCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (!(commandSender instanceof Player)) {
+        if (!(commandSender instanceof Player player)) {
             commandSender.sendMessage("Dieser Befehl kann nur von einem Spieler ausgeführt werden.");
             return false;
         }
-
-        Player player = (Player) commandSender;
 
         try {
             ByteArrayOutputStream b = new ByteArrayOutputStream();
@@ -29,7 +27,7 @@ public class LobbyCommand implements CommandExecutor {
             player.sendPluginMessage(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("varoPlugin")), "BungeeCord", b.toByteArray());
         } catch (Exception e) {
             player.sendMessage("Es gab einen Fehler beim Ausführen des Befehls.");
-            e.printStackTrace();
+            Bukkit.getLogger().severe("Fehler: " + e.getMessage());
         }
         return true;
     }
