@@ -18,3 +18,11 @@ commands:
     description: Geheim
   start:
     description: Auch geheim
+  sun:
+    description: Wechsle zu schönem Wetter
+  day:
+    description: Lasse die Sonne aufgehen
+  night:
+    description: Lasse die Sonne untergehen
+  gm:
+    description: Wechsle den Gamemode

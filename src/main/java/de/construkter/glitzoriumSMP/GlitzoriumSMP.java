@@ -1,6 +1,6 @@
 package de.construkter.glitzoriumSMP;
 
-import de.construkter.glitzoriumSMP.commands.LobbyCommand;
+import de.construkter.glitzoriumSMP.commands.*;
 import de.construkter.glitzoriumSMP.listeners.JoinListener;
 import de.construkter.glitzoriumSMP.release.ConfirmStart;
 import de.construkter.glitzoriumSMP.release.EventManager;
@@ -28,6 +28,10 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("prepare")).setExecutor(new PrepareStartCommand());
         Objects.requireNonNull(getCommand("start")).setExecutor(new StartCommand());
         Objects.requireNonNull(getCommand("start-confirm")).setExecutor(new ConfirmStart());
+        Objects.requireNonNull(getCommand("day")).setExecutor(new DayCommand());
+        Objects.requireNonNull(getCommand("night")).setExecutor(new NightCommand());
+        Objects.requireNonNull(getCommand("sun")).setExecutor(new SunCommand());
+        Objects.requireNonNull(getCommand("gm")).setExecutor(new GamemodeCommand());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true; //default is true, will be turned false when the prepare command is executed
     }
