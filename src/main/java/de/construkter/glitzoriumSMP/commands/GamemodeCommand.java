@@ -26,7 +26,7 @@ public class GamemodeCommand extends CommandForward implements CommandExecutor {
                     forward("gamemode", "spectator " + strings[1]);
                     break;
                 default:
-                    forward("gamemode", "survival " + strings[1]);
+                    commandSender.sendMessage(ChatColor.RED + "Unknown gamemode " + ChatColor.GOLD + strings[0]);
                     break;
             }
             return true;
