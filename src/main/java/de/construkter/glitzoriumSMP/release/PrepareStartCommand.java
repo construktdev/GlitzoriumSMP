@@ -1,11 +1,13 @@
 package de.construkter.glitzoriumSMP.release;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.checkerframework.common.reflection.qual.GetMethod;
 
 import java.util.Date;
 import java.util.Objects;
@@ -30,7 +32,11 @@ public class PrepareStartCommand implements CommandExecutor {
             for (Player p : Objects.requireNonNull(commandSender.getServer().getOnlinePlayers())) {
                 p.teleport(new Location(commandSender.getServer().getWorld("world"), blockX, blockY, blockZ));
             }
-            commandSender.sendMessage(ChatColor.GREEN + "Teleported all Players to the spawn!");
+            for (Player p : Objects.requireNonNull(commandSender.getServer().getOnlinePlayers())) {
+                if (!(p.hasPermission("glitzorium.smp.prepare.gamemode"))) {
+                    p.setGameMode(GameMode.SURVIVAL);
+                }
+            }
             long endTime = System.currentTimeMillis();
             commandSender.sendMessage(ChatColor.GREEN + "Start prepared in " + ChatColor.GOLD + (endTime - startTime) + "ms");
             return true;

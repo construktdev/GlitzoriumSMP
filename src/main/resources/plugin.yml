@@ -26,3 +26,5 @@ commands:
     description: Lasse die Sonne untergehen
   gm:
     description: Wechsle den Gamemode
+  chat:
+    description: Erlaubt Bedrock Spielern in den Chat ohne Chat Signing zu schreiben
