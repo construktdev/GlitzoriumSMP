@@ -3,8 +3,9 @@ package de.construkter.glitzoriumSMP;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
 import de.construkter.glitzoriumSMP.commands.*;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
-import de.construkter.glitzoriumSMP.helpop.commands.WarnCommand;
+import de.construkter.glitzoriumSMP.helpop.commands.*;
 import de.construkter.glitzoriumSMP.helpop.discord.listeners.ReadyListener;
+import de.construkter.glitzoriumSMP.helpop.listeners.ChatListener;
 import de.construkter.glitzoriumSMP.helpop.managers.FileManager;
 import de.construkter.glitzoriumSMP.listeners.JoinListener;
 import de.construkter.glitzoriumSMP.release.ConfirmStart;
@@ -15,8 +16,6 @@ import de.construkter.glitzoriumSMP.whitelist.AddWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.RemoveWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.WhitelistManager;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
@@ -26,6 +25,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.awt.*;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,20 +35,17 @@ public final class GlitzoriumSMP extends JavaPlugin {
     private static ShardManager jda;
     public static String avatar;
     private static final HelpOP helpop = new HelpOP();
-    private static List<Player> admins;
+    public static final List<Player> admins = new ArrayList<>();
 
     @Override
     public void onEnable() {
         instance = this;
-        for (Player player : getServer().getOnlinePlayers()) {
-            if (player.hasPermission("smp.admin")) {
-                admins.add(player);
-            }
-        }
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new WhitelistManager(), this);
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
         getServer().getPluginManager().registerEvents(new EventManager(), this);
+        getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        getServer().getPluginManager().registerEvents(new de.construkter.glitzoriumSMP.automod.ChatListener(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
@@ -62,6 +59,10 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("gm")).setExecutor(new GamemodeCommand());
         Objects.requireNonNull(getCommand("chat")).setExecutor(new ChatCommand());
         Objects.requireNonNull(getCommand("warn")).setExecutor(new WarnCommand());
+        Objects.requireNonNull(getCommand("kick")).setExecutor(new KickCommand());
+        Objects.requireNonNull(getCommand("ban")).setExecutor(new BanCommand());
+        Objects.requireNonNull(getCommand("mute")).setExecutor(new MuteCommand());
+        Objects.requireNonNull(getCommand("unmute")).setExecutor(new UnmuteCommand());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true; // Default is true, will be turned false when the prepare command is executed
         FileManager fileManager = new FileManager("config", "");
@@ -86,6 +87,11 @@ public final class GlitzoriumSMP extends JavaPlugin {
                 getLogger().info("");
             }
         }
+        for (Player player : getServer().getOnlinePlayers()) {
+            if (player.hasPermission("smp.admin")) {
+                admins.add(player);
+            }
+        }
     }
 
     @Override
@@ -103,10 +109,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
 
     public static HelpOP getHelpop() {
         return helpop;
-    }
-
-    public static List<Player> getAdmins() {
-        return admins;
     }
 
     public static void sendMessage(String type, String message) {

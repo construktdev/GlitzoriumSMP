@@ -30,3 +30,11 @@ commands:
     description: Erlaubt Bedrock Spielern in den Chat ohne Chat Signing zu schreiben
   warn:
     description: Warnt einen Spieler
+  kick:
+    description: Kickt einen Spieler
+  ban:
+    description: Bannt einen Spieler
+  mute:
+    description: Schaltet einen Spieler stumm
+  unmute:
+    description: Entstummt einen Spieler

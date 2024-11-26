@@ -12,16 +12,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class KickCommand implements CommandExecutor {
+public class BanCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("smp.helpop.kick")) {
+        if (commandSender.hasPermission("smp.helpop.ban")) {
             if (!(commandSender instanceof Player)) {
                 commandSender.sendMessage(ChatColor.RED + "You need to be a player to use this command!");
                 return true;
             }
             if (strings.length == 1 || strings.length == 0) {
-                commandSender.sendMessage(ChatColor.RED + "Usage: /kick <player> <reason>");
+                commandSender.sendMessage(ChatColor.RED + "Usage: /ban <player> <reason>");
                 return true;
             }
             HelpOP helpop = GlitzoriumSMP.getHelpop();
@@ -30,8 +30,8 @@ public class KickCommand implements CommandExecutor {
                 reason.append(string).append(" ");
             }
             String reasonString = reason.toString().replace(strings[0], "");
-            helpop.kick(Objects.requireNonNull(Bukkit.getPlayer(strings[0])), (Player) commandSender, reasonString);
-            commandSender.sendMessage(ChatColor.GREEN + "Kicked " + ChatColor.GOLD + strings[0] + ChatColor.GREEN + " for " + ChatColor.GOLD + reasonString);
+            helpop.ban(Objects.requireNonNull(Bukkit.getPlayer(strings[0])), (Player) commandSender, reasonString);
+            commandSender.sendMessage(ChatColor.GREEN + "Banned " + ChatColor.GOLD + strings[0] + ChatColor.GREEN + " for " + ChatColor.GOLD + reasonString);
             return true;
         }
         commandSender.sendMessage(ChatColor.RED + "You don't have permission to use this command!");
