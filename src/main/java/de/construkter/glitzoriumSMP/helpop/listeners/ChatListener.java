@@ -20,6 +20,8 @@ public class ChatListener implements Listener {
             player.sendMessage(Prefix.PluginPrefix() + ChatColor.RED + "Du bist gemuted! Bitte warte bis du entmuted wird.");
             GlitzoriumSMP.sendMessage("Chat", "**" + player.getName() + "** hat trotz mute versucht zu chatten. Nachricht: " + event.getMessage());
             event.setCancelled(true);
+            return;
         }
+        GlitzoriumSMP.logChatMessage(event.getMessage(), event.getPlayer());
     }
 }

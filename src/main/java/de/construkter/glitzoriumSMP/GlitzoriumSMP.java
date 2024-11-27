@@ -98,15 +98,12 @@ public final class GlitzoriumSMP extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        sendMessage("Power Off", "Der Server wurde gestoppt!");
+        saveConfig();
     }
 
     public static GlitzoriumSMP getInstance() {
         return instance;
-    }
-
-    public static ShardManager getJda() {
-        return jda;
     }
 
     public static HelpOP getHelpop() {
@@ -117,8 +114,24 @@ public final class GlitzoriumSMP extends JavaPlugin {
         TextChannel log = jda.getTextChannelById(1310679790226903089L);
         assert log != null;
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setTitle("⚔️ • HelpOP " + type);
+        if (type.equals("Power Off")) {
+            embedBuilder.setTitle("❌ • HelpOP " + type);
+        } else {
+            embedBuilder.setTitle("⚔️ • HelpOP " + type);
+        }
         embedBuilder.setDescription(message);
+        embedBuilder.setColor(Color.ORANGE);
+        embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
+        embedBuilder.setTimestamp(Instant.now());
+        log.sendMessageEmbeds(embedBuilder.build()).queue();
+    }
+
+    public static void logChatMessage(String message, Player player) {
+        TextChannel log = jda.getTextChannelById(1310679790226903089L);
+        assert log != null;
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+        embedBuilder.setTitle("📝 • HelpOP Chat Logger");
+        embedBuilder.setDescription("**" + player.getName() + "** sendete die Nachricht: `" + message + "`");
         embedBuilder.setColor(Color.ORANGE);
         embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
         embedBuilder.setTimestamp(Instant.now());
