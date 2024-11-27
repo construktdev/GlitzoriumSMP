@@ -14,6 +14,7 @@ import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
 import de.construkter.glitzoriumSMP.release.StartCommand;
 import de.construkter.glitzoriumSMP.spawnelytra.SpawnBoostListener;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
+import de.construkter.glitzoriumSMP.utils.DeathCounter;
 import de.construkter.glitzoriumSMP.whitelist.AddWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.RemoveWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.WhitelistManager;
@@ -47,6 +48,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
         getServer().getPluginManager().registerEvents(new EventManager(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        getServer().getPluginManager().registerEvents(new DeathCounter(), this);
         getServer().getPluginManager().registerEvents(new de.construkter.glitzoriumSMP.automod.ChatListener(), this);
         getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
