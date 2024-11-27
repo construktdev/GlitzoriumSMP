@@ -12,6 +12,7 @@ import de.construkter.glitzoriumSMP.release.ConfirmStart;
 import de.construkter.glitzoriumSMP.release.EventManager;
 import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
 import de.construkter.glitzoriumSMP.release.StartCommand;
+import de.construkter.glitzoriumSMP.spawnelytra.SpawnBoostListener;
 import de.construkter.glitzoriumSMP.whitelist.AddWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.RemoveWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.WhitelistManager;
@@ -46,6 +47,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EventManager(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getServer().getPluginManager().registerEvents(new de.construkter.glitzoriumSMP.automod.ChatListener(), this);
+        getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
