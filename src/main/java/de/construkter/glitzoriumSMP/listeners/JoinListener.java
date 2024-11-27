@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class JoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+        GlitzoriumSMP.logPLayer(true, event.getPlayer());
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             if (player.hasPermission("smp.admin")) {
                 GlitzoriumSMP.admins.add(player);
@@ -28,6 +29,7 @@ public class JoinListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
+        GlitzoriumSMP.logPLayer(false, event.getPlayer());
         Player player = event.getPlayer();
         event.setQuitMessage(ChatColor.DARK_AQUA + player.getName() + " hat den " + ChatColor.GOLD + "" + ChatColor.BOLD + "GlitzoriumSMP " + ChatColor.DARK_AQUA + "verlassen!");
     }

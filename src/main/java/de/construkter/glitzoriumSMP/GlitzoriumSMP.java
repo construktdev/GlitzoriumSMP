@@ -98,6 +98,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
                 admins.add(player);
             }
         }
+        DeathCounter.setupDeathBoard();
     }
 
     @Override
@@ -136,6 +137,22 @@ public final class GlitzoriumSMP extends JavaPlugin {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle("📝 • HelpOP Chat Logger");
         embedBuilder.setDescription("**" + player.getName() + "** sendete die Nachricht: `" + message + "`");
+        embedBuilder.setColor(Color.ORANGE);
+        embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
+        embedBuilder.setTimestamp(Instant.now());
+        log.sendMessageEmbeds(embedBuilder.build()).queue();
+    }
+
+    public static void logPLayer(boolean joined, Player player) {
+        TextChannel log = jda.getTextChannelById(1310679790226903089L);
+        assert log != null;
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+        embedBuilder.setTitle("📝 • HelpOP Join/Leave Logger");
+        if (joined) {
+            embedBuilder.setDescription("**" + player.getName() + "** hat den Server betreten!");
+        } else {
+            embedBuilder.setDescription("**" + player.getName() + "** hat den Server verlassen!");
+        }
         embedBuilder.setColor(Color.ORANGE);
         embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
         embedBuilder.setTimestamp(Instant.now());

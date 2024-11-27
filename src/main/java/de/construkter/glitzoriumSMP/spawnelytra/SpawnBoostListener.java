@@ -5,6 +5,7 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.KeybindComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -73,6 +74,7 @@ public class SpawnBoostListener implements Listener {
         boosted.add(event.getPlayer());
 
         event.getPlayer().setVelocity(event.getPlayer().getLocation().getDirection().multiply(multiplyValue));
+        event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 100, 1);
     }
 
     @EventHandler
