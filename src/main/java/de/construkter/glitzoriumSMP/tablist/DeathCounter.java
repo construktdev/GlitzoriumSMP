@@ -1,4 +1,4 @@
-package de.construkter.glitzoriumSMP.utils;
+package de.construkter.glitzoriumSMP.tablist;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

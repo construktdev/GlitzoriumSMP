@@ -14,7 +14,7 @@ import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
 import de.construkter.glitzoriumSMP.release.StartCommand;
 import de.construkter.glitzoriumSMP.spawnelytra.SpawnBoostListener;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
-import de.construkter.glitzoriumSMP.utils.DeathCounter;
+import de.construkter.glitzoriumSMP.tablist.DeathCounter;
 import de.construkter.glitzoriumSMP.whitelist.AddWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.RemoveWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.WhitelistManager;

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class StatusCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (!(commandSender instanceof Player)){
+        if (!(commandSender instanceof Player player)){
             commandSender.sendMessage("You must be a player to use this command!");
             return true;
         }
@@ -20,7 +20,6 @@ public class StatusCommand implements CommandExecutor {
             commandSender.sendMessage(Prefix.PluginPrefix() + ChatColor.DARK_AQUA + "Nutze /status list um dir alle möglichen Status Prefixes anzuzeigen");
             return true;
         }
-        Player player = (Player) commandSender;
         switch (strings[0].toLowerCase()) {
             case "ghg":
                 de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&5GHG&7] ");
@@ -32,9 +31,28 @@ public class StatusCommand implements CommandExecutor {
                 de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&4Redstone&7] ");
                 break;
             case "live":
-                de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&6Live&7] ");
+                de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&eLive&7] ");
+                break;
+            case "afk":
+                de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&8AFK&7] ");
+                break;
+            case "pvp":
+                de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&aPvP&7] ");
+                break;
+            case "builder":
+                de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&3Builder&7] ");
+                break;
+            case "troll":
+                de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&6Troll&7] ");
+                break;
+            case "polizei":
+                de.construkter.glitzoriumSMP.tablist.Prefix.setPLayerPrefix(player, "&7[&9Polizei&7] ");
+                break;
+            case "default":
+                commandSender.sendMessage(Prefix.errorPrefix() + "Dieser Tag existiert nicht! Nutze /status list um die verfügbaren dir anzuzeigen");
+                break;
             case "list":
-                player.sendMessage(Prefix.PluginPrefix() + ChatColor.DARK_AQUA + "Verfügbare Status Prefixe: " + ChatColor.GOLD + "ghg, bambus, redstone, live");
+                player.sendMessage(Prefix.PluginPrefix() + ChatColor.DARK_AQUA + "Verfügbare Status Prefixe: " + ChatColor.GOLD + "ghg, bambus, redstone, live, afk, pvp, builder, troll, polizei");
                 break;
         }
         if (strings[0].equals("list")) return true;
