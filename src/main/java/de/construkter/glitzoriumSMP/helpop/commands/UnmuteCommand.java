@@ -17,7 +17,7 @@ public class UnmuteCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (commandSender.hasPermission("smp.helpop.unmute")) {
             List<Player> mutedPlayers = HelpOP.mutedPlayers;
-            if (strings.length == 1 || strings.length == 0) {
+            if (strings.length != 1) {
                 commandSender.sendMessage(ChatColor.RED + "Usage: /unmute <player>");
                 return true;
             }
