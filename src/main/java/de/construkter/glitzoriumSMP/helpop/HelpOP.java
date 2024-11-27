@@ -20,12 +20,23 @@ public static List<Player> mutedPlayers = new ArrayList<>();
     }
 
     public void kick(Player target, Player moderator, String reason) {
+        if (moderator == null) {
+            String moderatorName = "AutoMod";
+            GlitzoriumSMP.sendMessage("Kick","**" + target.getName() + "** wurde von **" + moderatorName + "** gekickt!\n Grund: " + reason);
+            target.kickPlayer(ChatColor.RED + "Du wurdest gekickt! Grund: " + ChatColor.DARK_RED + reason);
+            return;
+        }
         GlitzoriumSMP.sendMessage("Kick","**" + target.getName() + "** wurde von **" + moderator.getName() + "** gekickt!\n Grund: " + reason);
         target.kickPlayer(ChatColor.RED + "Du wurdest gekickt! Grund: " + ChatColor.DARK_RED + reason);
     }
 
     public void ban(Player target, Player moderator, String reason) {
-        GlitzoriumSMP.sendMessage("Bann","**" + target.getName() + "** wurde von **" + moderator.getName() + "** gebannt!\n Grund: " + reason);
+        if (moderator == null) {
+            String moderatorName = "AutoMod";
+            GlitzoriumSMP.sendMessage("Bann","**" + target.getName() + "** wurde von **" + moderatorName + "** gebannt!\n Grund: " + reason);
+        } else {
+            GlitzoriumSMP.sendMessage("Bann","**" + target.getName() + "** wurde von **" + moderator.getName() + "** gebannt!\n Grund: " + reason);
+        }
         target.kickPlayer(ChatColor.RED + "Du wurdest gebannt! Grund: " + ChatColor.DARK_RED + reason);
         Bukkit.getBanList(BanList.Type.NAME).addBan(target.getName(), reason, null, moderator.getName());
     }
