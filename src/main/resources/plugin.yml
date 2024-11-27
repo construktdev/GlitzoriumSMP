@@ -38,3 +38,5 @@ commands:
     description: Schaltet einen Spieler stumm
   unmute:
     description: Entstummt einen Spieler
+  status:
+    description: Setze einen Status wie in CraftAttack
