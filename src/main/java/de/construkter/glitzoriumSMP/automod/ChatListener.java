@@ -28,9 +28,9 @@ public class ChatListener implements Listener {
         }
         HelpOP helpOP = new HelpOP();
         if (warnings.containsKey(event.getPlayer()) && warnings.get(event.getPlayer()) == 3) {
-            helpOP.kick(event.getPlayer(), null, "Du hast 3 mal ein verbotenes Wort gesagt. Automated by Glitzorium HelpOP");
+            helpOP.kick(event.getPlayer(), event.getPlayer(), "Du hast 3 mal ein verbotenes Wort gesagt. Automated by Glitzorium HelpOP");
         } else if (warnings.containsKey(event.getPlayer()) && warnings.get(event.getPlayer()) == 5) {
-            helpOP.ban(event.getPlayer(), null, "Du hast 5 mal ein verbotenes Wort gesagt. Automated by Glitzorium HelpOP");
+            helpOP.ban(event.getPlayer(), event.getPlayer(), "Du hast 5 mal ein verbotenes Wort gesagt. Automated by Glitzorium HelpOP");
         }
     }
 }
