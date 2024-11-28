@@ -9,9 +9,11 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
+import java.util.Objects;
+
 public class DeathCounter implements Listener {
     public static void setupDeathBoard() {
-        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        Scoreboard scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard();
         Objective objective = scoreboard.getObjective("deaths");
         if (objective == null) {
             objective = scoreboard.registerNewObjective("deaths", "deathCount");
@@ -24,7 +26,7 @@ public class DeathCounter implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        Scoreboard scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard();
         player.setScoreboard(scoreboard);
     }
 }
