@@ -28,7 +28,6 @@ public class ConfirmStart extends Utils implements CommandExecutor {
             sleep(1000);
             Objects.requireNonNull(commandSender.getServer().getWorld("world")).getWorldBorder().setSize(30, TimeUnit.SECONDS, 5);
             Objects.requireNonNull(commandSender.getServer().getWorld("world")).getWorldBorder().setSize(20000);
-            PrepareStartCommand.isStarted = false;
             commandSender.sendMessage(ChatColor.GREEN + "Fully started!");
             PrepareStartCommand.isStarted = true;
             return true;
