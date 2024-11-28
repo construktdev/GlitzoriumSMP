@@ -9,7 +9,9 @@ public class BadWords {
                 "motherfucker", "bastard", "fuck", "cock", "slut", "whore",
                 "douchebag", "piss", "twat", "prick", "wanker", "fag",
                 "jerk", "cocksucker", "faggot", "tits", "nigga", "nigger", "hoe",
-                "retard", "skank", "bimbo", "harlot"
+                "retard", "skank", "bimbo", "harlot", "nigare", "niggerman", "nigroman",
+                "niger", "hure", "huhre", "huree", "hureee", "hureeee", "hureeeee",
+                "hail", "heil", "hitler"
         };
     }
 
