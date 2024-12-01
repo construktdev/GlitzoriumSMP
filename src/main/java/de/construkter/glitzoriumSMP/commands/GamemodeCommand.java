@@ -9,8 +9,8 @@ public class GamemodeCommand extends CommandForward implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender.hasPermission("smp.command.forward")) {
-            if (strings[1] == null) {
-                strings[1] = commandSender.getName();
+            if (strings.length != 2) {
+                commandSender.sendMessage(ChatColor.RED + "Usage: /gamemode <0/1/2/3> <player>");
             }
             switch (strings[0]) {
                 case "0":

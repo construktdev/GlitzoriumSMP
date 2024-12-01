@@ -70,6 +70,7 @@ public class SpawnBoostListener implements Listener {
 
     @EventHandler
     public void onPLayerSwapItems(PlayerSwapHandItemsEvent event) {
+        if (!event.getPlayer().isGliding()) return;
         if (!event.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN).getType().isAir()) return;
         if (boosted.contains(event.getPlayer())) return;
         event.setCancelled(true);
