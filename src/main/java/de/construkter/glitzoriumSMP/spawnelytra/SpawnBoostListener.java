@@ -1,5 +1,6 @@
 package de.construkter.glitzoriumSMP.spawnelytra;
 
+import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.KeybindComponent;
@@ -49,6 +50,7 @@ public class SpawnBoostListener implements Listener {
 
     @EventHandler
     public void onPlayerDoubleJump(PlayerToggleFlightEvent event) {
+        if (!PrepareStartCommand.isStarted) return;
         if (event.getPlayer().getGameMode() != GameMode.SURVIVAL) return;
         if (!isInSpawnRadius(event.getPlayer())) return;
         event.setCancelled(true);
@@ -68,6 +70,7 @@ public class SpawnBoostListener implements Listener {
 
     @EventHandler
     public void onPLayerSwapItems(PlayerSwapHandItemsEvent event) {
+        if (!event.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN).getType().isAir()) return;
         if (boosted.contains(event.getPlayer())) return;
         event.setCancelled(true);
         boosted.add(event.getPlayer());
