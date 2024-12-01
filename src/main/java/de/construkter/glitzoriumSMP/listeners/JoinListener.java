@@ -2,7 +2,6 @@ package de.construkter.glitzoriumSMP.listeners;
 
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
-import de.construkter.glitzoriumSMP.utils.Prefix;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -17,11 +16,6 @@ public class JoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         GlitzoriumSMP.logPLayer(true, event.getPlayer());
-        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            if (player.hasPermission("smp.admin")) {
-                GlitzoriumSMP.admins.add(player);
-            }
-        }
         Bukkit.getLogger().info(Arrays.toString(GlitzoriumSMP.admins.toArray()));
         Player player = event.getPlayer();
         event.setJoinMessage(ChatColor.DARK_AQUA + player.getName() + " hat den " + ChatColor.GOLD + "" + ChatColor.BOLD + "GlitzoriumSMP " + ChatColor.DARK_AQUA + "betreten!");

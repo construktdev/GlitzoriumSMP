@@ -12,7 +12,7 @@ public class ChatCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         String messageRaw = Arrays.toString(strings);
         String message = messageRaw.replace("[", "").replace("]", "").replace(",", "");
-        Bukkit.broadcastMessage("<" + commandSender.getName() + ">" + message);
+        Bukkit.broadcastMessage("<" + commandSender.getName() + "> " + message);
         return true;
     }
 }

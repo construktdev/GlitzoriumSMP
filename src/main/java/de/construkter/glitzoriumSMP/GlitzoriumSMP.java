@@ -70,16 +70,16 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("mute")).setExecutor(new MuteCommand());
         Objects.requireNonNull(getCommand("unmute")).setExecutor(new UnmuteCommand());
         Objects.requireNonNull(getCommand("status")).setExecutor(new StatusCommand());
-        Objects.requireNonNull(getCommand("clearwarns")).setExecutor(new ClearWarnsCommand());
+        Objects.requireNonNull(getCommand("status")).setTabCompleter(new StatusCommand());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true; // Default is true, will be turned false when the prepare command is executed
         FileManager fileManager = new FileManager("config", "");
         if (fileManager.getFileConfiguration().getString("token") == null) {
-            getLogger().info("");
+            getLogger().info(" ");
             getLogger().info("---------------------------------------------");
             getLogger().info("[!!!] No token was set in the config.yml file.");
             getLogger().info("---------------------------------------------");
-            getLogger().info("");
+            getLogger().info(" ");
             fileManager.getFileConfiguration().set("token", "token-here");
         } else {
             String token = fileManager.getFileConfiguration().getString("token");
@@ -87,18 +87,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
                     .setActivity(Activity.playing("GlitzoriumSMP"))
                     .addEventListeners(new ReadyListener())
                     .build();
-            if (fileManager.getFileConfiguration().getString("logChannel") == null) {
-                getLogger().info("");
-                getLogger().info("---------------------------------------------");
-                getLogger().info("[!!!] No Logging Channel was set in the config.yml file.");
-                getLogger().info("---------------------------------------------");
-                getLogger().info("");
-            }
-        }
-        for (Player player : getServer().getOnlinePlayers()) {
-            if (player.hasPermission("smp.admin")) {
-                admins.add(player);
-            }
         }
         DeathCounter.setupDeathBoard();
     }
