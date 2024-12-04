@@ -40,7 +40,7 @@
      5.1.4 Aus dem Ordner /target die Datei 'GlitzoriumSMP-1.0-SNAPSHOT-shaded.jar' kopieren
 
 ## Bei Fragen
-Web Support System:
- - https://glitzorium.de/support/
-Discord Server:
+Web Support System: <br>
+ - https://glitzorium.de/support/ <br>
+Discord Server: <br>
 - https://construkter.de/discord
