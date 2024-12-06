@@ -15,7 +15,6 @@ import java.util.List;
 
 public class StatusCommand implements CommandExecutor, TabCompleter {
 
-    // Liste der verfügbaren Status-Prefixe
     private static final List<String> STATUS_OPTIONS = Arrays.asList(
             "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "list"
     );
