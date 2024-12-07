@@ -66,6 +66,7 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
                 break;
         }
         if (strings[0].equals("list")) return true;
+        if (!STATUS_OPTIONS.contains( strings[0].toLowerCase())) return true;
         player.sendMessage(ChatColor.DARK_AQUA + "Dein Status ist nun " + ChatColor.GOLD + strings[0]);
         return true;
     }
