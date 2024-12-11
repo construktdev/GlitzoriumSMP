@@ -29,7 +29,7 @@ public class SpawnBoostListener implements Listener {
     private final List<Player> flying = new ArrayList<>();
     private final List<Player> boosted = new ArrayList<>();
     public SpawnBoostListener(Plugin plugin) {
-        this.multiplyValue = 5;
+        this.multiplyValue = 3;
         this.spawnRadius = 30;
         Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             Objects.requireNonNull(Bukkit.getWorld("world")).getPlayers().forEach(player -> {
