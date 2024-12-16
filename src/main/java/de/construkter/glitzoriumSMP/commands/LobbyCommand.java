@@ -24,10 +24,10 @@ public class LobbyCommand implements CommandExecutor {
             out.writeUTF("Connect");
             out.writeUTF("lobby");
 
-            player.sendPluginMessage(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("varoPlugin")), "BungeeCord", b.toByteArray());
+            player.sendPluginMessage(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("GlitzoriumSMP")), "BungeeCord", b.toByteArray());
         } catch (Exception e) {
             player.sendMessage("Es gab einen Fehler beim Ausführen des Befehls.");
-            Bukkit.getLogger().severe("Fehler: " + e.getMessage());
+            e.printStackTrace();
         }
         return true;
     }

@@ -1,5 +1,6 @@
 package de.construkter.glitzoriumSMP.whitelist;
 
+import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +16,9 @@ public class WhitelistManager implements Listener {
 
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent event) {
+        if (!GlitzoriumSMP.whitelist) {
+            return;
+        }
         if (!(getWhitelist(event.getPlayer()))) {
             event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, "Du bist nicht auf der Whitelist.");
         }

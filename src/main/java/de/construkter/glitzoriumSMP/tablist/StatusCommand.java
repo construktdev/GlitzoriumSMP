@@ -16,7 +16,7 @@ import java.util.List;
 public class StatusCommand implements CommandExecutor, TabCompleter {
 
     private static final List<String> STATUS_OPTIONS = Arrays.asList(
-            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "list"
+            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "skibidi", "sigma", "reset"
     );
 
     @Override
@@ -58,11 +58,17 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             case "polizei":
                 Prefix.setPLayerPrefix(player, "&7[&9Polizei&7] ");
                 break;
-            case "default":
-                commandSender.sendMessage("Dieser Tag existiert nicht! Nutze /status list um die verfügbaren dir anzuzeigen");
+            case "skibidi":
+                Prefix.setPLayerPrefix(player, "&7[&6Skibidi&7] ");
                 break;
-            case "list":
-                player.sendMessage( ChatColor.DARK_AQUA + "Verfügbare Status Prefixe: " + ChatColor.GOLD + "ghg, bambus, redstone, live, afk, pvp, builder, troll, polizei");
+            case "sigma":
+                Prefix.setPLayerPrefix(player, "&7[&aSigma&7] ");
+                break;
+            case "reset":
+                Prefix.setPLayerPrefix(player, "");
+                break;
+            case "default":
+                commandSender.sendMessage("Dieser Tag existiert nicht!");
                 break;
         }
         if (strings[0].equals("list")) return true;
