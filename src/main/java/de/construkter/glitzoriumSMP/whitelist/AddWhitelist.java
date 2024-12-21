@@ -1,5 +1,6 @@
 package de.construkter.glitzoriumSMP.whitelist;
 
+import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,6 +13,13 @@ public class AddWhitelist implements CommandExecutor {
             if (strings.length != 1) {
                 commandSender.sendMessage(ChatColor.RED + "Usage: /playeradd <name>");
                 return false;
+            }
+            if (strings[0].equalsIgnoreCase("off")) {
+                GlitzoriumSMP.whitelist = false;
+                return true;
+            } else if (strings[0].equalsIgnoreCase("on")) {
+                GlitzoriumSMP.whitelist = true;
+                return true;
             }
             commandSender.sendMessage(ChatColor.GREEN + WhitelistManager.addPlayer(strings[0]));
             return true;

@@ -2,6 +2,7 @@ package de.construkter.glitzoriumSMP.helpop.commands;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
+import de.construkter.glitzoriumSMP.utils.Prefix;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -30,8 +31,16 @@ public class WarnCommand implements CommandExecutor {
                 reason.append(string).append(" ");
             }
             String reasonString = reason.toString().replace(strings[0], "");
+            reasonString = reasonString.replace("  ", " ");
             helpop.warn(Objects.requireNonNull(Bukkit.getPlayer(strings[0])), (Player) commandSender, reasonString);
             commandSender.sendMessage(ChatColor.GREEN + "Warned " + ChatColor.GOLD + strings[0] + ChatColor.GREEN + " for " + ChatColor.GOLD + reasonString);
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                if (player.hasPermission("smp.helpop.ban")) {
+                    if (!commandSender.getName().equals(player.getName())) {
+                        player.sendMessage(Prefix.helpOP() + ChatColor.DARK_AQUA + commandSender.getName() + " hat " + strings[0] + "für " + ChatColor.GOLD + reasonString + " gewarnt.");
+                    }
+                }
+            }
             return true;
         }
         commandSender.sendMessage(ChatColor.RED + "You don't have permission to use this command!");

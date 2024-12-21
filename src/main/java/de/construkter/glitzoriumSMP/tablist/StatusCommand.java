@@ -1,5 +1,6 @@
 package de.construkter.glitzoriumSMP.tablist;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,8 +17,10 @@ import java.util.List;
 public class StatusCommand implements CommandExecutor, TabCompleter {
 
     private static final List<String> STATUS_OPTIONS = Arrays.asList(
-            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "list"
+            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "skibidi", "sigma", "reset"
     );
+
+    private static final List<Player> STATUS_FORCE = new ArrayList<>();
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
@@ -25,9 +28,34 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             commandSender.sendMessage("You must be a player to use this command!");
             return true;
         }
-        if (strings.length != 1) {
-            commandSender.sendMessage(ChatColor.RED + "Usage: /status <status>");
-            commandSender.sendMessage(ChatColor.DARK_AQUA + "Nutze /status list um dir alle möglichen Status Prefixes anzuzeigen");
+        if (commandSender.hasPermission("smp.status") && (!STATUS_OPTIONS.contains(strings[0]) || strings[0].equals("reset"))) {
+            if (strings.length != 2) {
+                commandSender.sendMessage(ChatColor.RED + "Usage: /status <status> <player>");
+                return true;
+            }
+            Player target = Bukkit.getPlayer(strings[1]);
+            if (target == null) {
+                commandSender.sendMessage(ChatColor.RED + "Player not found!");
+                return true;
+            }
+            if (strings[0].equalsIgnoreCase("clown")) {
+                Prefix.setPLayerPrefix(target, "&7[&cC&fl&co&fw&cn&7] ");
+                commandSender.sendMessage(ChatColor.GREEN + "Erfolgreich! Nutze /status reset " + target.getName() + " um den Status ihm zu entfernen!");
+                STATUS_FORCE.add(target);
+                return true;
+            } else if (strings[0].equalsIgnoreCase("reset")) {
+                Prefix.setPLayerPrefix(target, "");
+                STATUS_FORCE.remove(target);
+                return true;
+            }
+        } else {
+            if (strings.length != 1) {
+                commandSender.sendMessage(ChatColor.RED + "Usage: /status <status>");
+                return true;
+            }
+        }
+        if (STATUS_FORCE.contains(player)) {
+            commandSender.sendMessage(ChatColor.RED + "Du hast einen geforcten Status, und kannst diesen erst ändern wenn ein Admin deinen Status resettet");
             return true;
         }
         switch (strings[0].toLowerCase()) {
@@ -58,11 +86,17 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             case "polizei":
                 Prefix.setPLayerPrefix(player, "&7[&9Polizei&7] ");
                 break;
-            case "default":
-                commandSender.sendMessage("Dieser Tag existiert nicht! Nutze /status list um die verfügbaren dir anzuzeigen");
+            case "skibidi":
+                Prefix.setPLayerPrefix(player, "&7[&6Skibidi&7] ");
                 break;
-            case "list":
-                player.sendMessage( ChatColor.DARK_AQUA + "Verfügbare Status Prefixe: " + ChatColor.GOLD + "ghg, bambus, redstone, live, afk, pvp, builder, troll, polizei");
+            case "sigma":
+                Prefix.setPLayerPrefix(player, "&7[&aSigma&7] ");
+                break;
+            case "reset":
+                Prefix.setPLayerPrefix(player, "");
+                break;
+            case "default":
+                commandSender.sendMessage("Dieser Tag existiert nicht!");
                 break;
         }
         if (strings[0].equals("list")) return true;
