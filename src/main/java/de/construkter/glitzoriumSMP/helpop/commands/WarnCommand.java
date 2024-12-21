@@ -30,6 +30,7 @@ public class WarnCommand implements CommandExecutor {
                 reason.append(string).append(" ");
             }
             String reasonString = reason.toString().replace(strings[0], "");
+            reasonString = reasonString.replace("  ", " ");
             helpop.warn(Objects.requireNonNull(Bukkit.getPlayer(strings[0])), (Player) commandSender, reasonString);
             commandSender.sendMessage(ChatColor.GREEN + "Warned " + ChatColor.GOLD + strings[0] + ChatColor.GREEN + " for " + ChatColor.GOLD + reasonString);
             return true;
