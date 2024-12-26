@@ -1,6 +1,7 @@
 package de.construkter.glitzoriumSMP;
 
-import de.construkter.glitzoriumSMP.automod.ClearWarnsCommand;
+import de.construkter.glitzoriumSMP.antibot.AntiRaid;
+import de.construkter.glitzoriumSMP.antibot.AntiSeeker;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
 import de.construkter.glitzoriumSMP.commands.*;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
@@ -53,6 +54,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DeathCounter(), this);
         getServer().getPluginManager().registerEvents(new de.construkter.glitzoriumSMP.automod.ChatListener(), this);
         getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
+        getServer().getPluginManager().registerEvents(new AntiSeeker(), this);
+        getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
@@ -72,6 +75,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("unmute")).setExecutor(new UnmuteCommand());
         Objects.requireNonNull(getCommand("status")).setExecutor(new StatusCommand());
         Objects.requireNonNull(getCommand("status")).setTabCompleter(new StatusCommand());
+        Objects.requireNonNull(getCommand("bastighg")).setExecutor(new BastiGHG());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true; // Default is true, will be turned false when the prepare command is executed
         FileManager fileManager = new FileManager("config", "");
