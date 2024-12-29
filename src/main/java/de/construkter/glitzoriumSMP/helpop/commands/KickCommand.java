@@ -17,10 +17,6 @@ public class KickCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (commandSender.hasPermission("smp.helpop.kick")) {
-            if (!(commandSender instanceof Player)) {
-                commandSender.sendMessage(ChatColor.RED + "You need to be a player to use this command!");
-                return true;
-            }
             if (strings.length == 1 || strings.length == 0) {
                 commandSender.sendMessage(ChatColor.RED + "Usage: /kick <player> <reason>");
                 return true;

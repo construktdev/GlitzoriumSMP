@@ -12,12 +12,6 @@ commands:
     description: Füge einen Spieler zur Whitelist hinzu
   playerremove:
     description: Lösche einen Spieler von der Whitelist
-  prepare:
-    description: Bereite den Start vor
-  start-confirm:
-    description: Geheim
-  start:
-    description: Auch geheim
   sun:
     description: Wechsle zu schönem Wetter
   day:
