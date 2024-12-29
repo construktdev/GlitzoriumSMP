@@ -8,6 +8,7 @@ import de.construkter.glitzoriumSMP.helpop.HelpOP;
 import de.construkter.glitzoriumSMP.helpop.commands.*;
 import de.construkter.glitzoriumSMP.helpop.discord.listeners.ReadyListener;
 import de.construkter.glitzoriumSMP.helpop.listeners.ChatListener;
+import de.construkter.glitzoriumSMP.helpop.listeners.EventLogger;
 import de.construkter.glitzoriumSMP.helpop.managers.FileManager;
 import de.construkter.glitzoriumSMP.listeners.JoinListener;
 import de.construkter.glitzoriumSMP.release.ConfirmStart;
@@ -56,13 +57,11 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         getServer().getPluginManager().registerEvents(new AntiSeeker(), this);
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
+        getServer().getPluginManager().registerEvents(new EventLogger(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
         Objects.requireNonNull(getCommand("playerremove")).setExecutor(new RemoveWhitelist());
-        Objects.requireNonNull(getCommand("prepare")).setExecutor(new PrepareStartCommand());
-        Objects.requireNonNull(getCommand("start")).setExecutor(new StartCommand());
-        Objects.requireNonNull(getCommand("start-confirm")).setExecutor(new ConfirmStart());
         Objects.requireNonNull(getCommand("day")).setExecutor(new DayCommand());
         Objects.requireNonNull(getCommand("night")).setExecutor(new NightCommand());
         Objects.requireNonNull(getCommand("sun")).setExecutor(new SunCommand());
@@ -75,7 +74,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("unmute")).setExecutor(new UnmuteCommand());
         Objects.requireNonNull(getCommand("status")).setExecutor(new StatusCommand());
         Objects.requireNonNull(getCommand("status")).setTabCompleter(new StatusCommand());
-        Objects.requireNonNull(getCommand("bastighg")).setExecutor(new BastiGHG());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true; // Default is true, will be turned false when the prepare command is executed
         FileManager fileManager = new FileManager("config", "");

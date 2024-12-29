@@ -15,17 +15,22 @@ public class ChatListener implements Listener {
     public void onChat(AsyncPlayerChatEvent event) {
         String message = event.getMessage();
         for (String word : BadWords.getBadWords()) {
-            if (message.toLowerCase().contains(word)) {
-                GlitzoriumSMP.sendMessage("AutMod", "**" + event.getPlayer().getName() + "** hat ein verbotenes Wort gesagt: " + word);
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(BadWords.getWarnMessage(word));
-                if (warnings.containsKey(event.getPlayer())) {
-                    warnings.put(event.getPlayer(), warnings.get(event.getPlayer()) + 1);
-                } else {
-                    warnings.put(event.getPlayer(), 1);
+            String[] words = message.split(" ");
+            for (String word2 : words) {
+                if (word2.toLowerCase().startsWith(word)) {
+                    GlitzoriumSMP.sendMessage("AutMod", "**" + event.getPlayer().getName() + "** hat ein verbotenes Wort gesagt: " + word);
+                    event.setCancelled(true);
+                    event.getPlayer().sendMessage(BadWords.getWarnMessage(word));
+                    if (warnings.containsKey(event.getPlayer())) {
+                        warnings.put(event.getPlayer(), warnings.get(event.getPlayer()) + 1);
+                    } else {
+                        warnings.put(event.getPlayer(), 1);
+                    }
                 }
             }
+
         }
+
         HelpOP helpOP = new HelpOP();
         if (warnings.containsKey(event.getPlayer()) && warnings.get(event.getPlayer()) == 3) {
             helpOP.kick(event.getPlayer(), event.getPlayer(), "Du hast 3 mal ein verbotenes Wort gesagt. Automated by Glitzorium HelpOP");
