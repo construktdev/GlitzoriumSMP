@@ -11,10 +11,8 @@ import de.construkter.glitzoriumSMP.helpop.listeners.ChatListener;
 import de.construkter.glitzoriumSMP.helpop.listeners.EventLogger;
 import de.construkter.glitzoriumSMP.helpop.managers.FileManager;
 import de.construkter.glitzoriumSMP.listeners.JoinListener;
-import de.construkter.glitzoriumSMP.release.ConfirmStart;
 import de.construkter.glitzoriumSMP.release.EventManager;
 import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
-import de.construkter.glitzoriumSMP.release.StartCommand;
 import de.construkter.glitzoriumSMP.spawnelytra.SpawnBoostListener;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
 import de.construkter.glitzoriumSMP.tablist.DeathCounter;
@@ -80,7 +78,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("unmute")).setExecutor(new UnmuteCommand());
         Objects.requireNonNull(getCommand("status")).setExecutor(new StatusCommand());
         Objects.requireNonNull(getCommand("status")).setTabCompleter(new StatusCommand());
-        Objects.requireNonNull(getCommand("bastighg")).setExecutor(new BastiGHG());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true; // Default is true, will be turned false when the prepare command is executed
         FileManager fileManager = new FileManager("config", "");
