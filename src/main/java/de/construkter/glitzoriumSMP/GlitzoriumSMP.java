@@ -46,6 +46,13 @@ public final class GlitzoriumSMP extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        String logo = "╔═╗┬  ┬┌┬┐┌─┐┌─┐┬─┐┬┬ ┬┌┬┐╔═╗╔╦╗╔═╗\n" +
+                "║ ╦│  │ │ ┌─┘│ │├┬┘││ ││││╚═╗║║║╠═╝\n" +
+                "╚═╝┴─┘┴ ┴ └─┘└─┘┴└─┴└─┘┴ ┴╚═╝╩ ╩╩  ";
+        getLogger().info("\n");
+        getLogger().info(logo);
+        getLogger().info("\nGlitzorium SMP is starting... (1.0-Snapshot)");
+        getLogger().info("\n");
         instance = this;
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new WhitelistManager(), this);
@@ -55,7 +62,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DeathCounter(), this);
         getServer().getPluginManager().registerEvents(new de.construkter.glitzoriumSMP.automod.ChatListener(), this);
         getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
-        getServer().getPluginManager().registerEvents(new AntiSeeker(), this);
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
