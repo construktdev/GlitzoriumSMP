@@ -1,7 +1,7 @@
 package de.construkter.glitzoriumSMP;
 
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
-import de.construkter.glitzoriumSMP.antibot.AntiSeeker;
+import de.construkter.glitzoriumSMP.anticheat.AntiXray;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
 import de.construkter.glitzoriumSMP.commands.*;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
@@ -24,6 +24,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -44,15 +45,13 @@ public final class GlitzoriumSMP extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        String logo = "╔═╗┬  ┬┌┬┐┌─┐┌─┐┬─┐┬┬ ┬┌┬┐╔═╗╔╦╗╔═╗\n" +
+        String logo = ChatColor.DARK_AQUA + "\n╔═╗┬  ┬┌┬┐┌─┐┌─┐┬─┐┬┬ ┬┌┬┐╔═╗╔╦╗╔═╗\n" +
                 "║ ╦│  │ │ ┌─┘│ │├┬┘││ ││││╚═╗║║║╠═╝\n" +
                 "╚═╝┴─┘┴ ┴ └─┘└─┘┴└─┴└─┘┴ ┴╚═╝╩ ╩╩  ";
-        getLogger().info("\n");
         getLogger().info(logo);
         getLogger().info("\nGlitzorium SMP is starting... (1.0-Snapshot)");
         getLogger().info("\n");
         instance = this;
-        // Plugin startup logic
         getServer().getPluginManager().registerEvents(new WhitelistManager(), this);
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
         getServer().getPluginManager().registerEvents(new EventManager(), this);
@@ -78,8 +77,10 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("unmute")).setExecutor(new UnmuteCommand());
         Objects.requireNonNull(getCommand("status")).setExecutor(new StatusCommand());
         Objects.requireNonNull(getCommand("status")).setTabCompleter(new StatusCommand());
+        Objects.requireNonNull(getCommand("troll")).setExecutor(new TrollCommand());
+        Objects.requireNonNull(getCommand("plist")).setExecutor(new WhosOnline());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-        PrepareStartCommand.isStarted = true; // Default is true, will be turned false when the prepare command is executed
+        PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");
         if (fileManager.getFileConfiguration().getString("token") == null) {
             getLogger().info(" ");
@@ -91,11 +92,12 @@ public final class GlitzoriumSMP extends JavaPlugin {
         } else {
             String token = fileManager.getFileConfiguration().getString("token");
             jda = DefaultShardManagerBuilder.createDefault(token)
-                    .setActivity(Activity.playing("GlitzoriumSMP"))
+                    .setActivity(Activity.playing("glitzorium.de on 1.21"))
                     .addEventListeners(new ReadyListener())
                     .build();
         }
         DeathCounter.setupDeathBoard();
+        AntiXray.checkDiamondsFound();
     }
 
     @Override

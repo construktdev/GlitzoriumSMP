@@ -34,3 +34,7 @@ commands:
     description: Entstummt einen Spieler
   status:
     description: Setze einen Status wie in CraftAttack
+  troll:
+    description: Trollt einen Spieler
+  plist:
+    description: Zeigt eine Liste mit aktiven Spielern
