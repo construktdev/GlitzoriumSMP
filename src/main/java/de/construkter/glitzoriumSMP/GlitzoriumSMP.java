@@ -61,6 +61,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
+        getServer().getPluginManager().registerEvents(new AntiXray(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());

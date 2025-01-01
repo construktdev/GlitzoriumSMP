@@ -60,6 +60,7 @@ public class AntiXray implements Listener {
                         }
                     }
                 }
+                diamondsFound.clear();
             }
         }.runTaskTimer(GlitzoriumSMP.getInstance(), 0, 500);
     }
