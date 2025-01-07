@@ -60,7 +60,6 @@ public class AntiXray implements Listener {
                             }
                         }
                     }
-                }
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     Bukkit.getLogger().info(player.getName() + ": " + diamondsFound.get(player));
                 }
