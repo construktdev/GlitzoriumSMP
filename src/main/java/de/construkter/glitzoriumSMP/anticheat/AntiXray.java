@@ -25,6 +25,9 @@ public class AntiXray implements Listener {
     public void onBlockMinedEvent(BlockBreakEvent event) {
         diamondsFound = new HashMap<>();
         if (event.getBlock().getType() == Material.DIAMOND_ORE || event.getBlock().getType() == Material.DEEPSLATE_DIAMOND_ORE) {
+            if (!diamondsFound.containsKey(event.getPlayer())) {
+                diamondsFound.put(event.getPlayer(), 1);
+            }
             diamondsFound.put(event.getPlayer(), diamondsFound.get(event.getPlayer()) + 1);
         }
     }
@@ -32,9 +35,7 @@ public class AntiXray implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (!diamondsFound.containsKey(player)) {
-            diamondsFound.put(player, 0);
-        }
+        diamondsFound.put(player, 0);
     }
 
     @EventHandler
@@ -52,13 +53,16 @@ public class AntiXray implements Listener {
                     HelpOP helpOP = new HelpOP();
                     if (value >= 13) {
                         helpOP.warn(p, (Player) Bukkit.getConsoleSender(), "xRay Verdacht (AntiCheat)");
-                        GlitzoriumSMP.sendMessage("AntiCheat xRay", p.getName()  + " hat " + value + " diamonds in 500 Ticks gefunden!");
+                        GlitzoriumSMP.sendMessage("AntiCheat xRay", p.getName() + " hat " + value + " diamonds in 500 Ticks gefunden!");
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             if (player.hasPermission("smp.admin")) {
                                 player.sendMessage(Prefix.helpOP() + ChatColor.DARK_AQUA + p.getName() + " wurde für xRay verdächtigt!");
                             }
                         }
                     }
+                }
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    Bukkit.getLogger().info(player.getName() + ": " + diamondsFound.get(player));
                 }
                 diamondsFound.clear();
             }

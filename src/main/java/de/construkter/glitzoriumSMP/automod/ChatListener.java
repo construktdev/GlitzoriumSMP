@@ -2,6 +2,7 @@ package de.construkter.glitzoriumSMP.automod;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,12 +14,16 @@ public class ChatListener implements Listener {
     public static HashMap<Player, Integer> warnings = new HashMap<>();
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
+        // Anti Message Report
+        event.setCancelled(true);
+        Bukkit.broadcastMessage("<" + event.getPlayer().getName() + "> " + event.getMessage());
+        // lol das wars schon wie einfach XD
         String message = event.getMessage();
         for (String word : BadWords.getBadWords()) {
             String[] words = message.split(" ");
             for (String word2 : words) {
                 if (word2.toLowerCase().startsWith(word)) {
-                    GlitzoriumSMP.sendMessage("AutMod", "**" + event.getPlayer().getName() + "** hat ein verbotenes Wort gesagt: " + word);
+                    GlitzoriumSMP.sendMessage("AutoMod", "**" + event.getPlayer().getName() + "** hat ein verbotenes Wort gesagt: " + word);
                     event.setCancelled(true);
                     event.getPlayer().sendMessage(BadWords.getWarnMessage(word));
                     if (warnings.containsKey(event.getPlayer())) {

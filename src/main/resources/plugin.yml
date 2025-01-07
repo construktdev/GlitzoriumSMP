@@ -38,3 +38,11 @@ commands:
     description: Trollt einen Spieler
   plist:
     description: Zeigt eine Liste mit aktiven Spielern
+  ai:
+    description: Frage llama3 etwas (beta)
+  ping:
+    description: Zeigt dir deinen Ping
+  playtime:
+    description: Zeigt dir deine Spielzeit
+  afk:
+    description: AFK System (beta)
