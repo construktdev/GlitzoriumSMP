@@ -1,5 +1,9 @@
 package de.construkter.glitzoriumSMP;
 
+import de.construkter.glitzoriumSMP.afksystem.AFKCommand;
+import de.construkter.glitzoriumSMP.afksystem.AutoAFK;
+import de.construkter.glitzoriumSMP.afksystem.JoinAFK;
+import de.construkter.glitzoriumSMP.ai.AICommand;
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
 import de.construkter.glitzoriumSMP.anticheat.AntiXray;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
@@ -61,7 +65,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
-        getServer().getPluginManager().registerEvents(new AntiXray(), this);
+        getServer().getPluginManager().registerEvents(new JoinAFK(), this);
+        getServer().getPluginManager().registerEvents(new AutoAFK(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
@@ -80,6 +85,11 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("status")).setTabCompleter(new StatusCommand());
         Objects.requireNonNull(getCommand("troll")).setExecutor(new TrollCommand());
         Objects.requireNonNull(getCommand("plist")).setExecutor(new WhosOnline());
+        Objects.requireNonNull(getCommand("ai")).setExecutor(new AICommand());
+        Objects.requireNonNull(getCommand("ping")).setExecutor(new PingCommand());
+        Objects.requireNonNull(getCommand("playtime")).setExecutor(new PlayTimeCommand());
+        Objects.requireNonNull(getCommand("afk")).setExecutor(new AFKCommand());
+
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");
@@ -98,7 +108,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
                     .build();
         }
         DeathCounter.setupDeathBoard();
-        AntiXray.checkDiamondsFound();
+        // AntiXray.checkDiamondsFound();
+        // AutoAFK.startAutoAFK();
     }
 
     @Override

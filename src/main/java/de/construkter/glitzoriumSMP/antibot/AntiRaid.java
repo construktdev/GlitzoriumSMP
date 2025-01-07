@@ -1,6 +1,7 @@
 package de.construkter.glitzoriumSMP.antibot;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,8 +20,8 @@ public class AntiRaid implements Listener {
             manager.addUUID(player.getName(), player.getUniqueId().toString());
         } else {
             if (!(savedUUID.equals(player.getUniqueId().toString()))) {
-                event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "Deine UUID stimmt nicht mit der zuvor gespeicherten überein. \n Wenn du denkst dass dies ein Fehler ist, melde dich bei Construkter");
-                GlitzoriumSMP.sendMessage("UUID Logger", event.getPlayer().getName() + " wurde gekickt, da seine UUID nicht übereinstimmt.");
+                event.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.DARK_RED + "Bist du ein cracked Account? \n" + ChatColor.RED + "Support: https://glitzorium.de/support");
+                GlitzoriumSMP.sendMessage("Anti Raid", event.getPlayer().getName() + " wurde gekickt, da seine UUID nicht übereinstimmt.");
             }
         }
     }

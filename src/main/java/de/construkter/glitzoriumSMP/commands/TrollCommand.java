@@ -26,6 +26,10 @@ public class TrollCommand implements CommandExecutor {
             message = message.replace(strings[0], "");
             message = message.replace("  ", " ");
             Player target = Bukkit.getPlayer(strings[0]);
+            if (target == null) {
+                commandSender.sendMessage(ChatColor.RED + "Player " + strings[0] + " not found.");
+                return true;
+            }
             for (int i = 0; i <= 20; i++) {
                 target.sendMessage(message);
                 target.sendTitle(message, message, 10, 20, 10);
