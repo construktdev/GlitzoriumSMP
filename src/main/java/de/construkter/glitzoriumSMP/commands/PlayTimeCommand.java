@@ -18,9 +18,8 @@ public class PlayTimeCommand implements CommandExecutor {
         int days = totalSeconds / (24 * 60 * 60);
         int remainingSeconds = totalSeconds % (24 * 60 * 60);
         int hours = remainingSeconds / (60 * 60);
-        int minutes = remainingSeconds % (60 * 60);
 
-        String formattedTime = days + "d " + hours + "h " + minutes + "m";
+        String formattedTime = days + "d " + hours + "h ";
 
         player.sendMessage(ChatColor.DARK_AQUA + "Spielzeit: " + ChatColor.GOLD + formattedTime);
         return true;
