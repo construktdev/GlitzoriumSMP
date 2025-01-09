@@ -33,6 +33,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +101,12 @@ public final class GlitzoriumSMP extends JavaPlugin {
             getLogger().info("[!!!] No token was set in the config.yml file.");
             getLogger().info("---------------------------------------------");
             getLogger().info(" ");
+            File file = new File("/plugins/GlitzoriumSMP/config.yml");
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             fileManager.getFileConfiguration().set("token", "token-here");
         } else {
             String token = fileManager.getFileConfiguration().getString("token");
