@@ -1,6 +1,7 @@
 package de.construkter.glitzoriumSMP.afksystem;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
+import de.construkter.glitzoriumSMP.antibot.UUIDManager;
 import de.construkter.glitzoriumSMP.tablist.Prefix;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
 import org.bukkit.Bukkit;
@@ -12,31 +13,45 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class AutoAFK implements Listener {
 
     static Map<Player, Long> lastMoves = new HashMap<>();
     static Map<Player, Long> lastInteract = new HashMap<>();
     List<Player> afkPlayers = AFKCommand.afkPlayers;
+    UUIDManager manager = new UUIDManager("status.txt");
+
+    public AutoAFK() throws IOException {
+    }
 
     @EventHandler
-    public void onMove(PlayerMoveEvent event) {
+    public void onMove(PlayerMoveEvent event) throws IOException {
         if (afkPlayers.contains(event.getPlayer())) {
             afkPlayers.remove(event.getPlayer());
             event.getPlayer().sendMessage(ChatColor.GRAY + "Du bist nun nicht mehr AFK!");
-            Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
+            if (manager.getUUID(event.getPlayer().getName()) != null) {
+                Prefix.setPLayerPrefix(event.getPlayer(), manager.getUUID(event.getPlayer().getName()));
+            } else {
+                Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
+            }
         }
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent event) {
+    public void onInteract(PlayerInteractEvent event) throws IOException {
         if (afkPlayers.contains(event.getPlayer())) {
             afkPlayers.remove(event.getPlayer());
             event.getPlayer().sendMessage(ChatColor.GRAY + "Du bist nun nicht mehr AFK!");
-            Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
+            if (manager.getUUID(event.getPlayer().getName()) != null) {
+                Prefix.setPLayerPrefix(event.getPlayer(), manager.getUUID(event.getPlayer().getName()));
+            } else {
+                Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
+            }
         }
     }
 

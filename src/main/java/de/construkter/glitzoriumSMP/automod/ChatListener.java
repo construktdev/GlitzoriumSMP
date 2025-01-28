@@ -2,6 +2,7 @@ package de.construkter.glitzoriumSMP.automod;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
+import de.construkter.glitzoriumSMP.helpop.commands.MuteCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,14 +10,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class ChatListener implements Listener {
     public static HashMap<Player, Integer> warnings = new HashMap<>();
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
         // Anti Message Report
+        List<Player> mutedPlayers = HelpOP.mutedPlayers;
         event.setCancelled(true);
-        Bukkit.broadcastMessage("<" + event.getPlayer().getName() + "> " + event.getMessage());
+        if (!mutedPlayers.contains(event.getPlayer())) {
+            Bukkit.broadcastMessage("<" + event.getPlayer().getName() + "> " + event.getMessage());
+        }
         // lol das wars schon wie einfach XD
         String message = event.getMessage();
         for (String word : BadWords.getBadWords()) {

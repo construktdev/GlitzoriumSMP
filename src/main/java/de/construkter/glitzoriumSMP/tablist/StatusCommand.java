@@ -1,5 +1,6 @@
 package de.construkter.glitzoriumSMP.tablist;
 
+import de.construkter.glitzoriumSMP.antibot.UUIDManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,17 +11,28 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.*;
 
 public class StatusCommand implements CommandExecutor, TabCompleter {
 
     private static final List<String> STATUS_OPTIONS = Arrays.asList(
-            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "skibidi", "sigma", "reset"
+            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "skibidi", "sigma", "reset", "schweiz"
     );
 
     public static Map<Player, String> playerStatus = new HashMap<>();
 
     private static final List<Player> STATUS_FORCE = new ArrayList<>();
+
+    private static UUIDManager manager;
+
+    static {
+        try {
+            manager = new UUIDManager("status.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
@@ -58,63 +70,21 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             commandSender.sendMessage(ChatColor.RED + "Du hast einen geforcten Status, und kannst diesen erst ändern wenn ein Admin deinen Status resettet");
             return true;
         }
-        switch (strings[0].toLowerCase()) {
-            case "ghg":
-                Prefix.setPLayerPrefix(player, "&7[&5GHG&7] ");
-                playerStatus.put(player, "&7[&5GHG&7] ");
-                break;
-            case "bambus":
-                Prefix.setPLayerPrefix(player, "&7[&2Bambus&7] ");
-                playerStatus.put(player, "&7[&2Bambus&7] ");
-                break;
-            case "redstone":
-                Prefix.setPLayerPrefix(player, "&7[&4Redstone&7] ");
-                playerStatus.put(player, "&7[&4Redstone&7] ");
-                break;
-            case "live":
-                Prefix.setPLayerPrefix(player, "&7[&eLive&7] ");
-                playerStatus.put(player, "&7[&eLive&7] ");
-                break;
-            case "afk":
-                Prefix.setPLayerPrefix(player, "&7[&8AFK&7] ");
-                commandSender.sendMessage(ChatColor.RED + "Bitte beachte das dieser Tag bald nur noch mit /afk genutzt werden kann!");
-                playerStatus.put(player, "&7[&8AFK&7] ");
-                break;
-            case "pvp":
-                Prefix.setPLayerPrefix(player, "&7[&aPvP&7] ");
-                playerStatus.put(player, "&7[&aPvP&7] ");
-                break;
-            case "builder":
-                Prefix.setPLayerPrefix(player, "&7[&3Builder&7] ");
-                playerStatus.put(player, "&7[&3Builder&7] ");
-                break;
-            case "troll":
-                Prefix.setPLayerPrefix(player, "&7[&6Troll&7] ");
-                playerStatus.put(player, "&7[&6Troll&7] ");
-                break;
-            case "polizei":
-                Prefix.setPLayerPrefix(player, "&7[&9Polizei&7] ");
-                playerStatus.put(player, "&7[&9Polizei&7] ");
-                break;
-            case "skibidi":
-                Prefix.setPLayerPrefix(player, "&7[&6Skibidi&7] ");
-                playerStatus.put(player, "&7[&6Skibidi&7] ");
-                break;
-            case "sigma":
-                Prefix.setPLayerPrefix(player, "&7[&aSigma&7] ");
-                playerStatus.put(player, "&7[&aSigma&7] ");
-                break;
-            case "reset":
-                Prefix.setPLayerPrefix(player, "");
-                playerStatus.put(player, "");
-                break;
-            default:
-                commandSender.sendMessage("Dieser Tag existiert nicht!");
-                break;
-        }
+
+        Prefix.setPLayerPrefix(player, getPrefix(player, strings[0]));
+        playerStatus.put(player, getPrefix(player, strings[0]));
+
         if (strings[0].equals("list")) return true;
         if (!STATUS_OPTIONS.contains( strings[0].toLowerCase())) return true;
         player.sendMessage(ChatColor.DARK_AQUA + "Dein Status ist nun " + ChatColor.GOLD + strings[0]);
+        if (strings[1].equals("save")) {
+            try {
+                manager.addUUID(player.getName(), getPrefix(player, strings[0]));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            player.sendMessage(ChatColor.GREEN + "Du hast den Status " + strings[0] + "gespeichert!");
+        }
         return true;
     }
 
@@ -131,5 +101,27 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             return suggestions;
         }
         return null;
+    }
+
+    public String getPrefix(Player player, String status) {
+        return switch (status.toLowerCase()) {
+            case "ghg" -> "&7[&5GHG&7] ";
+            case "bambus" -> "&7[&2Bambus&7] ";
+            case "redstone" -> "&7[&4Redstone&7] ";
+            case "live" -> "&7[&eLive&7] ";
+            case "afk" -> "&7[&8Afk&7] ";
+            case "pvp" -> "&7[&aPvp&7] ";
+            case "builder" -> "&7[&3Builder&7] ";
+            case "troll" -> "&7[&6Troll&7] ";
+            case "polizei" -> "&7[&9Polizei&7] ";
+            case "skibidi" -> "&7[&6Skibidi&7] ";
+            case "sigma" -> "&7[&aSigma&7] ";
+            case "schweiz" -> "&7[&4Sc&fhwe&4iz&7] ";
+            case "reset" -> "";
+            default -> {
+                player.sendMessage("Dieser Tag existiert nicht!");
+                yield "";
+            }
+        };
     }
 }

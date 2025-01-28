@@ -46,3 +46,5 @@ commands:
     description: Zeigt dir deine Spielzeit
   afk:
     description: AFK System (beta)
+  removestatus:
+    description: Lösche einen gespeicherten Status
