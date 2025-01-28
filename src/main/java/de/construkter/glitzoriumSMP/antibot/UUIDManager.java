@@ -26,6 +26,12 @@ public class UUIDManager {
         return data.getOrDefault(name, null);
     }
 
+    public void removeUUID(String name) throws IOException {
+        Map<String, String> data = loadFromFile();
+        data.remove(name);
+        saveToFile(data);
+    }
+
     private Map<String, String> loadFromFile() throws IOException {
         Map<String, String> data = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {

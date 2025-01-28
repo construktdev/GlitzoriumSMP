@@ -1,17 +1,29 @@
 package de.construkter.glitzoriumSMP.helpop;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
+import de.construkter.glitzoriumSMP.antibot.UUIDManager;
 import de.construkter.glitzoriumSMP.utils.Prefix;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelpOP {
-public static List<Player> mutedPlayers = new ArrayList<>();
+
+    public static List<Player> mutedPlayers = new ArrayList<>();
+    public static UUIDManager banManager;
+
+    static {
+        try {
+            banManager = new UUIDManager("tempbans.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void warn(Player target, Player moderator, String reason) {
         Bukkit.getScheduler().runTask(GlitzoriumSMP.getInstance(), () -> {
@@ -44,6 +56,24 @@ public static List<Player> mutedPlayers = new ArrayList<>();
             }
             target.kickPlayer(ChatColor.RED + "Du wurdest gebannt! Grund: " + ChatColor.DARK_RED + reason);
             Bukkit.getBanList(BanList.Type.NAME).addBan(target.getName(), reason, null, moderator.getName());
+        });
+    }
+
+    public void tempBan(Player target, Player moderator, String reason, long duration) {
+        long days = duration / (24 * 60 * 60);
+        long hours = (duration % (24 * 60 * 60)) / (60 * 60);
+        long minutes = (duration % (60 * 60)) / 60;
+
+        Bukkit.getScheduler().runTask(GlitzoriumSMP.getInstance(), () -> {
+           if (moderator == null) {
+               String moderatorName = "AutoMod";
+               GlitzoriumSMP.sendMessage("Bann","**" + target.getName() + "** wurde von **" + moderatorName + "** gebannt!\n Grund: " + reason + "\nDuration: " + duration);
+           } else {
+               GlitzoriumSMP.sendMessage("Bann","**" + target.getName() + "** wurde von **" + moderator.getName() + "** gebannt!\n Grund: " + reason);
+           }
+           target.kickPlayer(ChatColor.RED + "Du wurdest gebannt! Grund: " + ChatColor.DARK_RED + reason + "\nZeit: " + days + "D " + hours + "H " + minutes + "M");
+           assert moderator != null;
+           Bukkit.getBanList(BanList.Type.NAME).addBan(target.getName(), reason, null, moderator.getName());
         });
     }
 

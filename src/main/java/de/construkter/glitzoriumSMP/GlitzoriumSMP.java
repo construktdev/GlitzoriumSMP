@@ -69,7 +69,11 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
         // getServer().getPluginManager().registerEvents(new AntiXray(), this);
         getServer().getPluginManager().registerEvents(new JoinAFK(), this);
-        getServer().getPluginManager().registerEvents(new AutoAFK(), this);
+        try {
+            getServer().getPluginManager().registerEvents(new AutoAFK(), this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
@@ -92,6 +96,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("ping")).setExecutor(new PingCommand());
         Objects.requireNonNull(getCommand("playtime")).setExecutor(new PlayTimeCommand());
         Objects.requireNonNull(getCommand("afk")).setExecutor(new AFKCommand());
+        Objects.requireNonNull(getCommand("removestatus")).setExecutor(new RemoveStatus());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");

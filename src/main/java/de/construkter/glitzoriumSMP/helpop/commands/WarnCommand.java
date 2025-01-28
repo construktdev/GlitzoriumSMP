@@ -1,6 +1,7 @@
 package de.construkter.glitzoriumSMP.helpop.commands;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
+import de.construkter.glitzoriumSMP.antibot.UUIDManager;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
 import de.construkter.glitzoriumSMP.utils.Prefix;
 import org.bukkit.Bukkit;
@@ -11,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class WarnCommand implements CommandExecutor {

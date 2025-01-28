@@ -25,7 +25,7 @@ public class WhitelistManager implements Listener {
     }
 
     public static String addPlayer(String player) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(WHITELIST_FILE))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(WHITELIST_FILE, true))) {
             writer.println(player);
         } catch (IOException e) {
             return "There was an error while writing to the whitelist file";
