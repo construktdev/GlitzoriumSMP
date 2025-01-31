@@ -34,7 +34,7 @@
 4. Gegebenenfalls in BadWords.java den AutoMod Filter ändern (getBadWords())
 5. Das Plugin kompillieren <br>
    5.1 Mit IntelliJ: <br>
-     5.1.1 Auf das Maven Symbol (m) Links in der Navigationsleiste klicken <br>
+     5.1.1 Auf das Maven Symbol (m) Rechts in der Navigationsleiste klicken <br>
      5.1.2 Lifecycle erweitern <br>
      5.1.3 Doppelclick auf 'package' <br>
      5.1.4 Aus dem Ordner /target die Datei 'GlitzoriumSMP-1.0-SNAPSHOT-shaded.jar' kopieren
