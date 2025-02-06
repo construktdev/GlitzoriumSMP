@@ -1,11 +1,9 @@
 package de.construkter.glitzoriumSMP;
 
 import de.construkter.glitzoriumSMP.afksystem.AFKCommand;
-import de.construkter.glitzoriumSMP.afksystem.AutoAFK;
 import de.construkter.glitzoriumSMP.afksystem.JoinAFK;
 import de.construkter.glitzoriumSMP.ai.AICommand;
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
-import de.construkter.glitzoriumSMP.anticheat.AntiXray;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
 import de.construkter.glitzoriumSMP.commands.*;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
@@ -67,7 +65,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
-        // getServer().getPluginManager().registerEvents(new AntiXray(), this);
         getServer().getPluginManager().registerEvents(new JoinAFK(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
@@ -116,8 +113,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
                     .build();
         }
         DeathCounter.setupDeathBoard();
-        // AntiXray.checkDiamondsFound();
-        // AutoAFK.startAutoAFK();
     }
 
     @Override
