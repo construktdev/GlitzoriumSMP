@@ -45,7 +45,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static String avatar;
     private static final HelpOP helpop = new HelpOP();
     public static final List<Player> admins = new ArrayList<>();
-    public static boolean whitelist = false;
+    public static boolean whitelist = true; // Aufrufe für Griefer auf reddit gefunden :(
 
     @Override
     public void onEnable() {
@@ -88,7 +88,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("ping")).setExecutor(new PingCommand());
         Objects.requireNonNull(getCommand("playtime")).setExecutor(new PlayTimeCommand());
         Objects.requireNonNull(getCommand("afk")).setExecutor(new AFKCommand());
-        Objects.requireNonNull(getCommand("removestatus")).setExecutor(new RemoveStatus());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");

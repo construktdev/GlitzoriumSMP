@@ -1,6 +1,7 @@
 package de.construkter.glitzoriumSMP.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,6 +17,11 @@ public class LobbyCommand implements CommandExecutor {
         if (!(commandSender instanceof Player player)) {
             commandSender.sendMessage("Dieser Befehl kann nur von einem Spieler ausgeführt werden.");
             return false;
+        }
+
+        if (Bukkit.getServer().getPort() == 25565) {
+            commandSender.sendMessage(ChatColor.DARK_AQUA + "Es gibt aktuell keine Lobby!");
+            return true;
         }
 
         try {

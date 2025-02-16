@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > Dieses Plugin kann nicht ohne Änderungen auf deinem Server genutzt werden!
-> Weswegen es auch nicht als binary zur verfügung steht
+> Deswegen steht es nicht als Binary zur Verfügung
 
 ## Key Features:
 - HelpOP System für leichtere Moderation
@@ -18,17 +18,17 @@
   - Es gibt das gleiche /status System wie in CraftAttack
   - Vom Spawn aus kann man mit einer Einweg-Elytra und einem Boost fliegen, um das travelling vom Spawn zu vereinfachen
   - In der TabList werden hinter dem Namen die entsprechenden Tode angezeigt
-- Kompabilität
+- Kompatibilität
   - Dieses Plugin ist darauf ausgelegt das Spielerlebnis auch für Bedrock Spieler so gut wie möglich ist
-  - Falls der Server unsigned chatting nicht zulässt, gibt es einen /chat Command um trotzdem zu chatten
-  - Es gibt eine Namens basierte Whitelist, um auch Bedrock Spieler whitelisten zu können
+  - Falls der Server unsigned chatting nicht zulässt, gibt es einen /chat Command, um trotzdem zu chatten
+  - Es gibt eine Namen-basierte Whitelist, um auch Bedrock Spieler whitelisten zu können
 - Sonstiges
   - SMP-Start System mit kleinem CraftAttack Insider Witz :)
  
 
 ## Aufsetzen
 0. Repo clonen
-1. In der Klasse GlitzoriumSMP.java bei den Zeilen (kann variieren) 121; 137 und 149 die Kanal ID zum logging Kanal setzen
+1. In der Klasse GlitzoriumSMP.java bei den Zeilen (kann variieren) 121; 137 und 149 die Kanal-ID zum logging Kanal setzen
 2. In der Klasse Prefix.java (package: utils) nötige Prefixes ändern
 3. In der Klasse SpawnBoostListener.java den SpawnRadius und Boost Faktor für die Spawn Elytra ändern
 4. Gegebenenfalls in BadWords.java den AutoMod Filter ändern (getBadWords())
