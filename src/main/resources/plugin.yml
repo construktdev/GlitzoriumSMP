@@ -46,3 +46,7 @@ commands:
     description: Zeigt dir deine Spielzeit
   afk:
     description: AFK System (beta)
+  ec:
+    description: Schaue in die Ender Chest von einem Spieler
+  invsee:
+    description: Schaue in das Inventar von einem Spieler

@@ -6,6 +6,7 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.KeybindComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
@@ -73,6 +74,7 @@ public class SpawnBoostListener implements Listener {
         if (!event.getPlayer().isGliding()) return;
         if (!event.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN).getType().isAir()) return;
         if (boosted.contains(event.getPlayer())) return;
+        if (event.getPlayer().getInventory().contains(Material.ELYTRA)) return;
         event.setCancelled(true);
         boosted.add(event.getPlayer());
 

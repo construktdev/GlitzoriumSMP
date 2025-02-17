@@ -88,6 +88,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("ping")).setExecutor(new PingCommand());
         Objects.requireNonNull(getCommand("playtime")).setExecutor(new PlayTimeCommand());
         Objects.requireNonNull(getCommand("afk")).setExecutor(new AFKCommand());
+        Objects.requireNonNull(getCommand("ec")).setExecutor(new EcCommand());
+        Objects.requireNonNull(getCommand("invsee")).setExecutor(new InventoryCommand());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");
