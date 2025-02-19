@@ -1,6 +1,7 @@
 package de.construkter.glitzoriumSMP;
 
 import de.construkter.glitzoriumSMP.afksystem.AFKCommand;
+import de.construkter.glitzoriumSMP.afksystem.AutoAFK;
 import de.construkter.glitzoriumSMP.afksystem.JoinAFK;
 import de.construkter.glitzoriumSMP.ai.AICommand;
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
@@ -15,6 +16,8 @@ import de.construkter.glitzoriumSMP.helpop.managers.FileManager;
 import de.construkter.glitzoriumSMP.listeners.JoinListener;
 import de.construkter.glitzoriumSMP.release.EventManager;
 import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
+import de.construkter.glitzoriumSMP.shop.Shop;
+import de.construkter.glitzoriumSMP.shop.ShopCommand;
 import de.construkter.glitzoriumSMP.spawnelytra.SpawnBoostListener;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
 import de.construkter.glitzoriumSMP.tablist.DeathCounter;
@@ -26,7 +29,6 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -49,9 +51,11 @@ public final class GlitzoriumSMP extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        String logo = ChatColor.DARK_AQUA + "\n╔═╗┬  ┬┌┬┐┌─┐┌─┐┬─┐┬┬ ┬┌┬┐╔═╗╔╦╗╔═╗\n" +
-                "║ ╦│  │ │ ┌─┘│ │├┬┘││ ││││╚═╗║║║╠═╝\n" +
-                "╚═╝┴─┘┴ ┴ └─┘└─┘┴└─┴└─┘┴ ┴╚═╝╩ ╩╩  ";
+        String logo = """
+                \n
+                ╔═╗┬  ┬┌┬┐┌─┐┌─┐┬─┐┬┬ ┬┌┬┐╔═╗╔╦╗╔═╗
+                ║ ╦│  │ │ ┌─┘│ │├┬┘││ ││││╚═╗║║║╠═╝
+                ╚═╝┴─┘┴ ┴ └─┘└─┘┴└─┴└─┘┴ ┴╚═╝╩ ╩╩ \s""";
         getLogger().info(logo);
         getLogger().info("\nGlitzorium SMP is starting... (1.0-Snapshot)");
         getLogger().info("\n");
@@ -66,6 +70,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
         getServer().getPluginManager().registerEvents(new JoinAFK(), this);
+        getServer().getPluginManager().registerEvents(new AutoAFK(), this);
+        getServer().getPluginManager().registerEvents(new Shop(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
@@ -90,6 +96,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("afk")).setExecutor(new AFKCommand());
         Objects.requireNonNull(getCommand("ec")).setExecutor(new EcCommand());
         Objects.requireNonNull(getCommand("invsee")).setExecutor(new InventoryCommand());
+        Objects.requireNonNull(getCommand("link")).setExecutor(new LinkCommand());
+        Objects.requireNonNull(getCommand("shop")).setExecutor(new ShopCommand());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");
@@ -164,7 +172,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle("📝 • HelpOP Join/Leave Logger");
         if (joined) {
-            embedBuilder.setDescription("**" + player.getName() + "** hat den Server betreten!");
+            embedBuilder.setDescription("**" + player.getName() + "** hat den Server betreten!\nHost: *Debug-mode disabled*");
         } else {
             embedBuilder.setDescription("**" + player.getName() + "** hat den Server verlassen!");
         }

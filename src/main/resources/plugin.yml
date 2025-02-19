@@ -50,3 +50,13 @@ commands:
     description: Schaue in die Ender Chest von einem Spieler
   invsee:
     description: Schaue in das Inventar von einem Spieler
+  link:
+    description: Sende einen klickbaren Link (beta)
+  shop:
+    description: Öffnet den Shop
+    usage: /shop
+    aliases:
+      - s
+      - laden
+      - einkaufen
+      - klickehierumdiaszuverschwenden

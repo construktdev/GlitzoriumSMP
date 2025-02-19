@@ -1,6 +1,8 @@
 package de.construkter.glitzoriumSMP.utils;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class Utils {
     public static void sleep(long millis) {

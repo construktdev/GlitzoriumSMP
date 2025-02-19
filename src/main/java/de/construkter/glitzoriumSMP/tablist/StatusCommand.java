@@ -77,14 +77,6 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
         if (strings[0].equals("list")) return true;
         if (!STATUS_OPTIONS.contains( strings[0].toLowerCase())) return true;
         player.sendMessage(ChatColor.DARK_AQUA + "Dein Status ist nun " + ChatColor.GOLD + strings[0]);
-        if (strings[1].equals("save")) {
-            try {
-                manager.addUUID(player.getName(), getPrefix(player, strings[0]));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            player.sendMessage(ChatColor.GREEN + "Du hast den Status " + strings[0] + "gespeichert!");
-        }
         return true;
     }
 
@@ -109,7 +101,7 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             case "bambus" -> "&7[&2Bambus&7] ";
             case "redstone" -> "&7[&4Redstone&7] ";
             case "live" -> "&7[&eLive&7] ";
-            case "afk" -> "&7[&8Afk&7] ";
+            case "afk" -> "&7[&8AfK&7] ";
             case "pvp" -> "&7[&aPvp&7] ";
             case "builder" -> "&7[&3Builder&7] ";
             case "troll" -> "&7[&6Troll&7] ";

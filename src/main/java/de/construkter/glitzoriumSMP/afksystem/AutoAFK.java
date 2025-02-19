@@ -24,9 +24,8 @@ public class AutoAFK implements Listener {
     static Map<Player, Long> lastMoves = new HashMap<>();
     static Map<Player, Long> lastInteract = new HashMap<>();
     List<Player> afkPlayers = AFKCommand.afkPlayers;
-    UUIDManager manager = new UUIDManager("status.txt");
 
-    public AutoAFK() throws IOException {
+    public AutoAFK() {
     }
 
     @EventHandler
@@ -34,11 +33,7 @@ public class AutoAFK implements Listener {
         if (afkPlayers.contains(event.getPlayer())) {
             afkPlayers.remove(event.getPlayer());
             event.getPlayer().sendMessage(ChatColor.GRAY + "Du bist nun nicht mehr AFK!");
-            if (manager.getUUID(event.getPlayer().getName()) != null) {
-                Prefix.setPLayerPrefix(event.getPlayer(), manager.getUUID(event.getPlayer().getName()));
-            } else {
-                Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
-            }
+            Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
         }
     }
 
@@ -47,11 +42,7 @@ public class AutoAFK implements Listener {
         if (afkPlayers.contains(event.getPlayer())) {
             afkPlayers.remove(event.getPlayer());
             event.getPlayer().sendMessage(ChatColor.GRAY + "Du bist nun nicht mehr AFK!");
-            if (manager.getUUID(event.getPlayer().getName()) != null) {
-                Prefix.setPLayerPrefix(event.getPlayer(), manager.getUUID(event.getPlayer().getName()));
-            } else {
-                Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
-            }
+            Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
         }
     }
 

@@ -17,6 +17,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class SpawnBoostListener implements Listener {
     private final List<Player> flying = new ArrayList<>();
     private final List<Player> boosted = new ArrayList<>();
     public SpawnBoostListener(Plugin plugin) {
-        this.multiplyValue = 3;
+        this.multiplyValue = 2;
         this.spawnRadius = 30;
         Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             Objects.requireNonNull(Bukkit.getWorld("world")).getPlayers().forEach(player -> {
@@ -74,10 +75,9 @@ public class SpawnBoostListener implements Listener {
         if (!event.getPlayer().isGliding()) return;
         if (!event.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN).getType().isAir()) return;
         if (boosted.contains(event.getPlayer())) return;
-        if (event.getPlayer().getInventory().contains(Material.ELYTRA)) return;
+        if (event.getPlayer().getInventory().getItem(EquipmentSlot.CHEST) != null &&  event.getPlayer().getInventory().getChestplate().getType() == Material.ELYTRA) return;
         event.setCancelled(true);
         boosted.add(event.getPlayer());
-
         event.getPlayer().setVelocity(event.getPlayer().getLocation().getDirection().multiply(multiplyValue));
         event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 100, 1);
     }

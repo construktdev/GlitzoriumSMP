@@ -12,4 +12,6 @@ public class Prefix {
         return ChatColor.DARK_AQUA + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "Help-OP" + ChatColor.DARK_AQUA + "] ";
 
     }
+
+    public static String SHOP = ChatColor.GRAY + "[" + ChatColor.GOLD + "" + ChatColor.BOLD + "Shop" + ChatColor.GRAY + "] ";
 }
