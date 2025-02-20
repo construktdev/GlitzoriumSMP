@@ -1,9 +1,7 @@
 package de.construkter.glitzoriumSMP.shop;
 
-import de.construkter.glitzoriumSMP.shop.items.BeaconShopItem;
-import de.construkter.glitzoriumSMP.shop.items.EmeraldBlockShopItem;
-import de.construkter.glitzoriumSMP.shop.items.NetheriteItemShop;
-import de.construkter.glitzoriumSMP.shop.items.TotemShopItem;
+import de.construkter.glitzoriumSMP.GlitzoriumSMP;
+import de.construkter.glitzoriumSMP.shop.items.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -23,7 +21,10 @@ public class Shop implements Listener {
             new TotemShopItem(),
             new EmeraldBlockShopItem(),
             new BeaconShopItem(),
-            new NetheriteItemShop()
+            new NetheriteItemShop(),
+            new RocketItemShop(),
+            new TemplateShopItem(),
+            new HolzShopItem()
     );
 
     public void openShop(Player player) {
@@ -80,6 +81,7 @@ public class Shop implements Listener {
         for (ShopItem item : shopItems) {
             if (item.getDisplayItem().getType() == event.getCurrentItem().getType()) {
                 item.purchase(player);
+                GlitzoriumSMP.logShopPurchase(item.getDisplayItem().getType().name(), (Player) event.getWhoClicked());
                 break;
             }
         }

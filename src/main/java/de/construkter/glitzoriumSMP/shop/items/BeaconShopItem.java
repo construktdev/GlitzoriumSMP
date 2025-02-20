@@ -18,7 +18,7 @@ public class BeaconShopItem implements ShopItem {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(ChatColor.DARK_AQUA + "Beacon");
-            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 50 Diamanten"));
+            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 100 Diamanten"));
             item.setItemMeta(meta);
         }
         return item;
@@ -26,7 +26,7 @@ public class BeaconShopItem implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 50;
+        return 100;
     }
 
     @Override

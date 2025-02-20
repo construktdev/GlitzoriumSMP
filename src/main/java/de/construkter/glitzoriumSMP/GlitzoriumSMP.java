@@ -181,4 +181,16 @@ public final class GlitzoriumSMP extends JavaPlugin {
         embedBuilder.setTimestamp(Instant.now());
         log.sendMessageEmbeds(embedBuilder.build()).queue();
     }
+
+    public static void logShopPurchase(String item, Player player) {
+        TextChannel log = jda.getTextChannelById(1310679790226903089L);
+        assert log != null;
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+        embedBuilder.setTitle("💵 • HelpOP Shop Logger");
+        embedBuilder.setTitle("**" + player.getName() + "** hat `" + item + "` gekauft.");
+        embedBuilder.setColor(Color.ORANGE);
+        embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
+        embedBuilder.setTimestamp(Instant.now());
+        log.sendMessageEmbeds(embedBuilder.build()).queue();
+    }
 }
