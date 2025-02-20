@@ -17,7 +17,7 @@ import java.util.*;
 public class StatusCommand implements CommandExecutor, TabCompleter {
 
     private static final List<String> STATUS_OPTIONS = Arrays.asList(
-            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "skibidi", "sigma", "reset", "schweiz"
+            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "skibidi", "sigma", "reset", "schweiz", "dev"
     );
 
     public static Map<Player, String> playerStatus = new HashMap<>();
@@ -109,6 +109,7 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             case "skibidi" -> "&7[&6Skibidi&7] ";
             case "sigma" -> "&7[&aSigma&7] ";
             case "schweiz" -> "&7[&4Sc&fhwe&4iz&7] ";
+            case "dev" -> "&7[&6D&3e&fv&7] ";
             case "reset" -> "";
             default -> {
                 player.sendMessage("Dieser Tag existiert nicht!");
