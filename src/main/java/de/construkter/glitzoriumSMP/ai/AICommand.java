@@ -33,7 +33,6 @@ public class AICommand implements CommandExecutor {
         String url = "http://127.0.0.1:11434/api/chat"; // Ollama-Server URL (angepasst, falls nötig)
 
         try {
-            // Baue die HTTP-Anfrage
             JSONObject jsonRequest = new JSONObject();
             jsonRequest.put("model", "llama3");
             jsonRequest.put("prompt", prompt);

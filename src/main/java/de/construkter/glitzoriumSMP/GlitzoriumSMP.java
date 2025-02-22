@@ -5,6 +5,7 @@ import de.construkter.glitzoriumSMP.afksystem.AutoAFK;
 import de.construkter.glitzoriumSMP.afksystem.JoinAFK;
 import de.construkter.glitzoriumSMP.ai.AICommand;
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
+import de.construkter.glitzoriumSMP.automod.AntiCommandSpam;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
 import de.construkter.glitzoriumSMP.commands.*;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
@@ -37,6 +38,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -72,6 +74,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new JoinAFK(), this);
         getServer().getPluginManager().registerEvents(new AutoAFK(), this);
         getServer().getPluginManager().registerEvents(new Shop(), this);
+        getServer().getPluginManager().registerEvents(new AntiCommandSpam(), this);
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
         Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
@@ -107,12 +110,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
             getLogger().info("[!!!] No token was set in the config.yml file.");
             getLogger().info("---------------------------------------------");
             getLogger().info(" ");
-            File file = new File("/plugins/GlitzoriumSMP/config.yml");
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
             fileManager.getFileConfiguration().set("token", "token-here");
         } else {
             String token = fileManager.getFileConfiguration().getString("token");
@@ -122,6 +119,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
                     .build();
         }
         DeathCounter.setupDeathBoard();
+        AntiCommandSpam.commandExecutions = new HashMap<>();
+        AntiCommandSpam.check(getInstance());
     }
 
     @Override
