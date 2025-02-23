@@ -1,6 +1,5 @@
 package de.construkter.glitzoriumSMP.tablist;
 
-import de.construkter.glitzoriumSMP.antibot.UUIDManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,28 +10,17 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
 import java.util.*;
 
 public class StatusCommand implements CommandExecutor, TabCompleter {
 
     private static final List<String> STATUS_OPTIONS = Arrays.asList(
-            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "skibidi", "sigma", "reset", "schweiz", "dev"
+            "ghg", "bambus", "redstone", "live", "afk", "pvp", "builder", "troll", "polizei", "skibidi", "sigma", "reset", "schweiz", "dev", "afm", "sgd"
     );
 
     public static Map<Player, String> playerStatus = new HashMap<>();
 
     private static final List<Player> STATUS_FORCE = new ArrayList<>();
-
-    private static UUIDManager manager;
-
-    static {
-        try {
-            manager = new UUIDManager("status.txt");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
@@ -42,7 +30,7 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
         }
         if (commandSender.hasPermission("smp.status") && (!STATUS_OPTIONS.contains(strings[0]) || strings[0].equals("reset"))) {
             if (strings.length != 2) {
-                commandSender.sendMessage(ChatColor.RED + "Usage: /status <status> <player>");
+                commandSender.sendMessage(ChatColor.RED + "Usage: /status clown <player>");
                 return true;
             }
             Player target = Bukkit.getPlayer(strings[1]);
@@ -110,6 +98,8 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             case "sigma" -> "&7[&aSigma&7] ";
             case "schweiz" -> "&7[&4Sc&fhwe&4iz&7] ";
             case "dev" -> "&7[&6D&3e&fv&7] ";
+            case "sgd" -> "&7[&01&e9&05&e3&7] ";
+            case "afm" -> "&7[&9AFM&7] ";
             case "reset" -> "";
             default -> {
                 player.sendMessage("Dieser Tag existiert nicht!");
