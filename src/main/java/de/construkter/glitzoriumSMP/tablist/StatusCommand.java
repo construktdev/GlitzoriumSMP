@@ -39,12 +39,12 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             if (strings[0].equalsIgnoreCase("clown")) {
-                Prefix.setPLayerPrefix(target, "&7[&cC&fl&co&fw&cn&7] ");
+                PrefixManager.setPLayerPrefix(target, "&7[&cC&fl&co&fw&cn&7] ");
                 commandSender.sendMessage(ChatColor.GREEN + "Erfolgreich! Nutze /status reset " + target.getName() + " um den Status ihm zu entfernen!");
                 STATUS_FORCE.add(target);
                 return true;
             } else if (strings[0].equalsIgnoreCase("reset")) {
-                Prefix.setPLayerPrefix(target, "");
+                PrefixManager.setPLayerPrefix(target, "");
                 STATUS_FORCE.remove(target);
                 return true;
             }
@@ -59,7 +59,7 @@ public class StatusCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        Prefix.setPLayerPrefix(player, getPrefix(player, strings[0]));
+        PrefixManager.setPLayerPrefix(player, getPrefix(player, strings[0]));
         playerStatus.put(player, getPrefix(player, strings[0]));
 
         if (strings[0].equals("list")) return true;

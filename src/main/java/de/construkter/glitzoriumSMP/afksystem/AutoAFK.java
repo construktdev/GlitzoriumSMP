@@ -1,8 +1,7 @@
 package de.construkter.glitzoriumSMP.afksystem;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
-import de.construkter.glitzoriumSMP.antibot.UUIDManager;
-import de.construkter.glitzoriumSMP.tablist.Prefix;
+import de.construkter.glitzoriumSMP.tablist.PrefixManager;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class AutoAFK implements Listener {
 
@@ -33,7 +31,7 @@ public class AutoAFK implements Listener {
         if (afkPlayers.contains(event.getPlayer())) {
             afkPlayers.remove(event.getPlayer());
             event.getPlayer().sendMessage(ChatColor.GRAY + "Du bist nun nicht mehr AFK!");
-            Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
+            PrefixManager.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
         }
     }
 
@@ -42,7 +40,7 @@ public class AutoAFK implements Listener {
         if (afkPlayers.contains(event.getPlayer())) {
             afkPlayers.remove(event.getPlayer());
             event.getPlayer().sendMessage(ChatColor.GRAY + "Du bist nun nicht mehr AFK!");
-            Prefix.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
+            PrefixManager.setPLayerPrefix(event.getPlayer(), StatusCommand.playerStatus.getOrDefault(event.getPlayer(), ""));
         }
     }
 
@@ -56,7 +54,7 @@ public class AutoAFK implements Listener {
                         if (AFKCommand.afkPlayers.contains(player)) {return;}
                         AFKCommand.afkPlayers.add(player);
                         player.sendMessage(ChatColor.GRAY + "Du bist nun AFK!");
-                         Prefix.setPLayerPrefix(player, "&7[&8AFK&7] ");
+                         PrefixManager.setPLayerPrefix(player, "&7[&8AFK&7] ");
                     }
                 }
             }

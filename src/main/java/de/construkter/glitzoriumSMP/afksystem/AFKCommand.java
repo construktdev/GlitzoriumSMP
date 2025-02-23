@@ -1,7 +1,6 @@
 package de.construkter.glitzoriumSMP.afksystem;
 
-import de.construkter.glitzoriumSMP.commands.PlayTimeCommand;
-import de.construkter.glitzoriumSMP.tablist.Prefix;
+import de.construkter.glitzoriumSMP.tablist.PrefixManager;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -23,9 +22,9 @@ public class AFKCommand implements CommandExecutor {
             if (!afkPlayers.contains(player)) {
                 afkPlayers.add(player);
                 player.sendMessage(ChatColor.GRAY + "Du bist nun AFK!");
-                Prefix.setPLayerPrefix(player, "&7[&8AFK&7] ");
+                PrefixManager.setPLayerPrefix(player, "&7[&8AFK&7] ");
             } else {
-                Prefix.setPLayerPrefix(player, StatusCommand.playerStatus.getOrDefault(player, ""));
+                PrefixManager.setPLayerPrefix(player, StatusCommand.playerStatus.getOrDefault(player, ""));
                 player.sendMessage(ChatColor.GRAY + "Du bist nun nicht mehr AFK! (Du musst deinen Status eventuell neu setzen)");
                 afkPlayers.remove(player);
             }

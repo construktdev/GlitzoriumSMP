@@ -8,7 +8,7 @@ import org.bukkit.scoreboard.Team;
 
 import java.util.Objects;
 
-public class Prefix {
+public class PrefixManager {
     public static void setPLayerPrefix(Player player, String prefix) {
         Scoreboard scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard();
         Team team = scoreboard.getTeam(player.getName());

@@ -3,7 +3,7 @@ package de.construkter.glitzoriumSMP.listeners;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import de.construkter.glitzoriumSMP.antibot.UUIDManager;
-import de.construkter.glitzoriumSMP.tablist.Prefix;
+import de.construkter.glitzoriumSMP.tablist.PrefixManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -26,7 +26,7 @@ public class JoinListener implements Listener {
         String status;
         if (manager.getUUID(player.getName()) != null) {
             status = manager.getUUID(player.getName());
-            Prefix.setPLayerPrefix(event.getPlayer(), status);
+            PrefixManager.setPLayerPrefix(event.getPlayer(), status);
         }
     }
 
