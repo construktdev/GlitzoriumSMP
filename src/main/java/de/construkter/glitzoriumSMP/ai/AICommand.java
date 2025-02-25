@@ -22,7 +22,7 @@ public class AICommand implements CommandExecutor {
             commandSender.sendMessage(ChatColor.RED + "Usage: /ai <prompt>");
         }
 
-        if (strings.length >= 0) {
+        if (true) {
             commandSender.sendMessage(ChatColor.RED + "Dies ist erst ein Beta Feature und kann noch nicht benutzt werden.");
             return true;
         }
