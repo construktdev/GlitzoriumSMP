@@ -60,3 +60,13 @@ commands:
       - laden
       - einkaufen
       - klickehierumdiaszuverschwenden
+  setdeaths:
+    description: Setze die Anzahl an Toden
+    usage: /setdeaths <Player> <Amount>
+  adddeaths:
+    description: Erhöht die Anzahl um 1
+    usage: /adddeaths <Player>
+  refreshdeaths:
+    description: Lädt die Tode neu
+    aliases:
+      - rd

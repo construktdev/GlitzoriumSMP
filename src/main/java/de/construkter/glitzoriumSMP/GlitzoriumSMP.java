@@ -101,6 +101,9 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("invsee")).setExecutor(new InventoryCommand());
         Objects.requireNonNull(getCommand("link")).setExecutor(new LinkCommand());
         Objects.requireNonNull(getCommand("shop")).setExecutor(new ShopCommand());
+        Objects.requireNonNull(getCommand("setdeaths")).setExecutor(new DeathCounter());
+        Objects.requireNonNull(getCommand("adddeaths")).setExecutor(new DeathCounter());
+        Objects.requireNonNull(getCommand("refreshdeaths")).setExecutor(new DeathCounter());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");
