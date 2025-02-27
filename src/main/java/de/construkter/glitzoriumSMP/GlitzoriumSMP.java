@@ -49,7 +49,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static String avatar;
     private static final HelpOP helpop = new HelpOP();
     public static final List<Player> admins = new ArrayList<>();
-    public static boolean whitelist = true; // Aufrufe für Griefer auf reddit gefunden :(
+    public static boolean whitelist = true; // Aufrufe für Griefer auf Reddit gefunden :(
 
     @Override
     public void onEnable() {
