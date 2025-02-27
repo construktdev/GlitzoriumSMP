@@ -24,7 +24,8 @@ public class Shop implements Listener {
             new NetheriteItemShop(),
             new RocketItemShop(),
             new TemplateShopItem(),
-            new HolzShopItem()
+            new HolzShopItem(),
+            new EnderChestShopItem()
     );
 
     public void openShop(Player player) {
