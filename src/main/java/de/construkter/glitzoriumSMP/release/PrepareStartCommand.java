@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import java.util.Objects;
 
 public class PrepareStartCommand implements CommandExecutor {
-    public static boolean isStarted;
+    public static boolean isStarted = true;
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         commandSender.sendMessage(ChatColor.DARK_RED + "SMP is already started!");

@@ -23,5 +23,6 @@ public class ReadyListener extends ListenerAdapter {
         assert log != null;
         log.sendMessageEmbeds(eb.build()).queue();
         GlitzoriumSMP.avatar = event.getJDA().getSelfUser().getAvatarUrl();
+        Bukkit.getLogger().info("HelpOP started as " + event.getJDA().getSelfUser().getName());
     }
 }

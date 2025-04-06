@@ -3,7 +3,6 @@ package de.construkter.glitzoriumSMP;
 import de.construkter.glitzoriumSMP.afksystem.AFKCommand;
 import de.construkter.glitzoriumSMP.afksystem.AutoAFK;
 import de.construkter.glitzoriumSMP.afksystem.JoinAFK;
-import de.construkter.glitzoriumSMP.ai.AICommand;
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
 import de.construkter.glitzoriumSMP.automod.AntiCommandSpam;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
@@ -19,7 +18,6 @@ import de.construkter.glitzoriumSMP.release.EventManager;
 import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
 import de.construkter.glitzoriumSMP.shop.Shop;
 import de.construkter.glitzoriumSMP.shop.ShopCommand;
-import de.construkter.glitzoriumSMP.spawnelytra.SpawnBoostListener;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
 import de.construkter.glitzoriumSMP.tablist.DeathCounter;
 import de.construkter.glitzoriumSMP.whitelist.AddWhitelist;
@@ -91,7 +89,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
         Objects.requireNonNull(getCommand("status")).setTabCompleter(new StatusCommand());
         Objects.requireNonNull(getCommand("troll")).setExecutor(new TrollCommand());
         Objects.requireNonNull(getCommand("plist")).setExecutor(new WhosOnline());
-        Objects.requireNonNull(getCommand("ai")).setExecutor(new AICommand());
         Objects.requireNonNull(getCommand("ping")).setExecutor(new PingCommand());
         Objects.requireNonNull(getCommand("playtime")).setExecutor(new PlayTimeCommand());
         Objects.requireNonNull(getCommand("afk")).setExecutor(new AFKCommand());
@@ -115,7 +112,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         } else {
             String token = fileManager.getFileConfiguration().getString("token");
             jda = DefaultShardManagerBuilder.createDefault(token)
-                    .setActivity(Activity.playing("glitzorium.de on 1.21"))
+                    .setActivity(Activity.playing("glitzorium.de | 1.7.10 - 1.21.5"))
                     .addEventListeners(new ReadyListener())
                     .build();
         }
