@@ -17,6 +17,7 @@ public class AntiRaid implements Listener {
         Player player = event.getPlayer();
         String savedUUID = manager.getUUID(player.getName());
         if (savedUUID == null) {
+            event.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.RED + "" + ChatColor.BOLD + "Safety Checkpoint\n" + ChatColor.DARK_GREEN + "We checked your Account. You may now rejoin!\n\nWir haben deinen Account überprüft. Du kannst jetzt rejoinen!");
             manager.addUUID(player.getName(), player.getUniqueId().toString());
         } else {
             if (!(savedUUID.equals(player.getUniqueId().toString()))) {

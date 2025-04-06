@@ -34,8 +34,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,7 +47,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static String avatar;
     private static final HelpOP helpop = new HelpOP();
     public static final List<Player> admins = new ArrayList<>();
-    public static boolean whitelist = true; // Aufrufe für Griefer auf Reddit gefunden :(
+    public static boolean whitelist = true;
 
     @Override
     public void onEnable() {
@@ -68,7 +66,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getServer().getPluginManager().registerEvents(new DeathCounter(), this);
         getServer().getPluginManager().registerEvents(new de.construkter.glitzoriumSMP.automod.ChatListener(), this);
-        getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
+        // getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
         getServer().getPluginManager().registerEvents(new JoinAFK(), this);
