@@ -64,7 +64,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getServer().getPluginManager().registerEvents(new DeathCounter(), this);
         getServer().getPluginManager().registerEvents(new de.construkter.glitzoriumSMP.automod.ChatListener(), this);
-        // getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
         getServer().getPluginManager().registerEvents(new JoinAFK(), this);
