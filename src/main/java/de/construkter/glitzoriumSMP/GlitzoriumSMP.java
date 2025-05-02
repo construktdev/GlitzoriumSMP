@@ -55,7 +55,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
                 ║ ╦│  │ │ ┌─┘│ │├┬┘││ ││││╚═╗║║║╠═╝
                 ╚═╝┴─┘┴ ┴ └─┘└─┘┴└─┴└─┘┴ ┴╚═╝╩ ╩╩ \s""";
         getLogger().info(logo);
-        getLogger().info("\nGlitzorium SMP is starting... (1.0-Snapshot)");
+        getLogger().info("\nGlitzorium SMP is starting...");
         getLogger().info("\n");
         instance = this;
         getServer().getPluginManager().registerEvents(new WhitelistManager(), this);
