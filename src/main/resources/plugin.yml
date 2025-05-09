@@ -6,52 +6,76 @@ api-version: '1.21'
 commands:
   hub:
     description: Gehe in die Lobby
+    usage: /hub
   lobby:
     description: Gehe in die Lobby
+    usage: /lobby
   playeradd:
     description: Füge einen Spieler zur Whitelist hinzu
+    usage: /playeradd <player>
   playerremove:
     description: Lösche einen Spieler von der Whitelist
+    usage: /playerremove <player>
   sun:
     description: Wechsle zu schönem Wetter
+    usage: /sun
   day:
     description: Lasse die Sonne aufgehen
+    usage: /day
   night:
     description: Lasse die Sonne untergehen
+    usage: /night
   gm:
     description: Wechsle den Gamemode
+    usage: /gm <0,1,2,3> <player>
   chat:
     description: Erlaubt Bedrock Spielern in den Chat ohne Chat Signing zu schreiben
+    usage: /chat <message>
   warn:
     description: Warnt einen Spieler
+    usage: /warn <player> <reason>
   kick:
     description: Kickt einen Spieler
+    usage: /kick <player> <reason>
   ban:
     description: Bannt einen Spieler
+    usage: /ban <player> <reason>
   mute:
     description: Schaltet einen Spieler stumm
+    usage: /mute <player> <reason>
   unmute:
     description: Entstummt einen Spieler
+    usage: /unmute <player>
   status:
     description: Setze einen Status wie in CraftAttack
+    usage: /status <statusId>
   troll:
     description: Trollt einen Spieler
+    usage: /troll <player> <message>
   plist:
     description: Zeigt eine Liste mit aktiven Spielern
+    usage: /plist
   ai:
     description: Frage llama3 etwas (beta)
+    usage: /ai <prompt>
   ping:
     description: Zeigt dir deinen Ping
+    usage: /ping
   playtime:
     description: Zeigt dir deine Spielzeit
+    usage: /playtime
   afk:
     description: AFK System (beta)
+    usage: /afk
   ec:
     description: Schaue in die Ender Chest von einem Spieler
+    usage: /ec <player>
   invsee:
     description: Schaue in das Inventar von einem Spieler
+    usage: /invsee <player>
   link:
     description: Sende einen klickbaren Link (beta)
+    usage: /link <link>
   shop:
     description: Öffnet den Shop
     usage: /shop
