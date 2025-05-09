@@ -7,7 +7,7 @@
 ## Key Features:
 - HelpOP System für leichtere Moderation
   - Discord Logging Implementation
-    - In der config.yml muss dafür ein token festgelegt werden, und in der Main-Klasse mehrmals der Logging-Kanal
+    - In der config.yml muss dafür ein token festgelegt werden, und in der Main-Klasse der Logging-Kanal
   - warn, mute, kick und ban command
   - AutoMod für einen sauberen Chat
 - Short Commands
@@ -28,7 +28,7 @@
 
 ## Aufsetzen
 0. Repo clonen
-1. In der Klasse GlitzoriumSMP.java bei den Zeilen (kann variieren) 121; 137 und 149 die Kanal-ID zum logging Kanal setzen
+1. In der Klasse GlitzoriumSMP.java die Kanal-ID zum logging Kanal setzen (am Ende der onEnable())
 2. In der Klasse Prefix.java (package: utils) nötige Prefixes ändern
 3. In der Klasse SpawnBoostListener.java den SpawnRadius und Boost Faktor für die Spawn Elytra ändern
 4. Gegebenenfalls in BadWords.java den AutoMod Filter ändern (getBadWords())
