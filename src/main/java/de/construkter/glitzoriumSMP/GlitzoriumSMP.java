@@ -30,6 +30,7 @@ import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.w3c.dom.Text;
 
 import java.awt.*;
 import java.time.Instant;
@@ -46,6 +47,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     private static final HelpOP helpop = new HelpOP();
     public static final List<Player> admins = new ArrayList<>();
     public static boolean whitelist = true;
+    private static TextChannel log;
 
     @Override
     public void onEnable() {
@@ -118,6 +120,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         DeathCounter.setupDeathBoard();
         AntiCommandSpam.commandExecutions = new HashMap<>();
         AntiCommandSpam.check(getInstance());
+        log = jda.getTextChannelById(1310679790226903089L);
     }
 
     @Override
@@ -135,7 +138,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     }
 
     public static void sendMessage(String type, String message) {
-        TextChannel log = jda.getTextChannelById(1310679790226903089L);
+
         assert log != null;
         EmbedBuilder embedBuilder = new EmbedBuilder();
         if (type.equals("Power Off")) {
@@ -151,7 +154,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
     }
 
     public static void logChatMessage(String message, Player player) {
-        TextChannel log = jda.getTextChannelById(1310679790226903089L);
         assert log != null;
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle("📝 • HelpOP Chat Logger");
@@ -163,7 +165,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
     }
 
     public static void logPLayer(boolean joined, Player player) {
-        TextChannel log = jda.getTextChannelById(1310679790226903089L);
         assert log != null;
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle("📝 • HelpOP Join/Leave Logger");
@@ -179,7 +180,6 @@ public final class GlitzoriumSMP extends JavaPlugin {
     }
 
     public static void logShopPurchase(String item, Player player) {
-        TextChannel log = jda.getTextChannelById(1310679790226903089L);
         assert log != null;
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle("💵 • HelpOP Shop Logger");
