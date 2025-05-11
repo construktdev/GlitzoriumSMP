@@ -35,7 +35,7 @@ public class AntiCommandSpam implements Listener {
             public void run() {
                 for (Map.Entry<Player, Integer> entry : commandExecutions.entrySet()) {
                     // Bukkit.getLogger().info(entry.getKey().getName() + ": " + entry.getValue());
-                    if (entry.getValue() >= 4) {
+                    if (entry.getValue() >= 6) {
                         punish(entry.getKey(), entry.getValue());
                     }
                     commandExecutions.put(entry.getKey(), 0);
