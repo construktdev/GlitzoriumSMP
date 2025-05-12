@@ -2,7 +2,6 @@ package de.construkter.glitzoriumSMP;
 
 import de.construkter.glitzoriumSMP.afksystem.AFKCommand;
 import de.construkter.glitzoriumSMP.afksystem.AutoAFK;
-import de.construkter.glitzoriumSMP.afksystem.JoinAFK;
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
 import de.construkter.glitzoriumSMP.automod.AntiCommandSpam;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
@@ -28,16 +27,16 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.w3c.dom.Text;
 
 import java.awt.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public final class GlitzoriumSMP extends JavaPlugin {
 
@@ -52,10 +51,10 @@ public final class GlitzoriumSMP extends JavaPlugin {
     @Override
     public void onEnable() {
         String logo = """
-                \n
-                ╔═╗┬  ┬┌┬┐┌─┐┌─┐┬─┐┬┬ ┬┌┬┐╔═╗╔╦╗╔═╗
-                ║ ╦│  │ │ ┌─┘│ │├┬┘││ ││││╚═╗║║║╠═╝
-                ╚═╝┴─┘┴ ┴ └─┘└─┘┴└─┴└─┘┴ ┴╚═╝╩ ╩╩ \s""";
+            \n
+            ╔═╗┬  ┬┌┬┐┌─┐┌─┐┬─┐┬┬ ┬┌┬┐╔═╗╔╦╗╔═╗
+            ║ ╦│  │ │ ┌─┘│ │├┬┘││ ││││╚═╗║║║╠═╝
+            ╚═╝┴─┘┴ ┴ └─┘└─┘┴└─┴└─┘┴ ┴╚═╝╩ ╩╩ \s""";
         getLogger().info(logo);
         getLogger().info("\nGlitzorium SMP is starting...");
         getLogger().info("\n");
@@ -68,38 +67,37 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new de.construkter.glitzoriumSMP.automod.ChatListener(), this);
         getServer().getPluginManager().registerEvents(new AntiRaid(), this);
         getServer().getPluginManager().registerEvents(new EventLogger(), this);
-        getServer().getPluginManager().registerEvents(new JoinAFK(), this);
         getServer().getPluginManager().registerEvents(new AutoAFK(), this);
         getServer().getPluginManager().registerEvents(new Shop(), this);
         getServer().getPluginManager().registerEvents(new AntiCommandSpam(), this);
-        Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand());
-        Objects.requireNonNull(getCommand("hub")).setExecutor(new LobbyCommand());
-        Objects.requireNonNull(getCommand("playeradd")).setExecutor(new AddWhitelist());
-        Objects.requireNonNull(getCommand("playerremove")).setExecutor(new RemoveWhitelist());
-        Objects.requireNonNull(getCommand("day")).setExecutor(new DayCommand());
-        Objects.requireNonNull(getCommand("night")).setExecutor(new NightCommand());
-        Objects.requireNonNull(getCommand("sun")).setExecutor(new SunCommand());
-        Objects.requireNonNull(getCommand("gm")).setExecutor(new GamemodeCommand());
-        Objects.requireNonNull(getCommand("chat")).setExecutor(new ChatCommand());
-        Objects.requireNonNull(getCommand("warn")).setExecutor(new WarnCommand());
-        Objects.requireNonNull(getCommand("kick")).setExecutor(new KickCommand());
-        Objects.requireNonNull(getCommand("ban")).setExecutor(new BanCommand());
-        Objects.requireNonNull(getCommand("mute")).setExecutor(new MuteCommand());
-        Objects.requireNonNull(getCommand("unmute")).setExecutor(new UnmuteCommand());
-        Objects.requireNonNull(getCommand("status")).setExecutor(new StatusCommand());
-        Objects.requireNonNull(getCommand("status")).setTabCompleter(new StatusCommand());
-        Objects.requireNonNull(getCommand("troll")).setExecutor(new TrollCommand());
-        Objects.requireNonNull(getCommand("plist")).setExecutor(new WhosOnline());
-        Objects.requireNonNull(getCommand("ping")).setExecutor(new PingCommand());
-        Objects.requireNonNull(getCommand("playtime")).setExecutor(new PlayTimeCommand());
-        Objects.requireNonNull(getCommand("afk")).setExecutor(new AFKCommand());
-        Objects.requireNonNull(getCommand("ec")).setExecutor(new EcCommand());
-        Objects.requireNonNull(getCommand("invsee")).setExecutor(new InventoryCommand());
-        Objects.requireNonNull(getCommand("link")).setExecutor(new LinkCommand());
-        Objects.requireNonNull(getCommand("shop")).setExecutor(new ShopCommand());
-        Objects.requireNonNull(getCommand("setdeaths")).setExecutor(new DeathCounter());
-        Objects.requireNonNull(getCommand("adddeaths")).setExecutor(new DeathCounter());
-        Objects.requireNonNull(getCommand("refreshdeaths")).setExecutor(new DeathCounter());
+        registerCommand("lobby", new LobbyCommand());
+        registerCommand("hub", new LobbyCommand());
+        registerCommand("playeradd", new AddWhitelist());
+        registerCommand("playerremove", new RemoveWhitelist());
+        registerCommand("day", new DayCommand());
+        registerCommand("night", new NightCommand());
+        registerCommand("sun", new SunCommand());
+        registerCommand("gm", new GamemodeCommand());
+        registerCommand("chat", new ChatCommand());
+        registerCommand("warn", new WarnCommand());
+        registerCommand("kick", new KickCommand());
+        registerCommand("ban", new BanCommand());
+        registerCommand("mute", new MuteCommand());
+        registerCommand("unmute", new UnmuteCommand());
+        registerCommand("status", new StatusCommand());
+        registerCommand("troll", new TrollCommand());
+        registerCommand("plist", new WhosOnline());
+        registerCommand("ping", new PingCommand());
+        registerCommand("playtime", new PlayTimeCommand());
+        registerCommand("afk", new AFKCommand());
+        registerCommand("ec", new EcCommand());
+        registerCommand("invsee", new InventoryCommand());
+        registerCommand("link", new LinkCommand());
+        registerCommand("shop", new ShopCommand());
+        registerCommand("setdeaths", new DeathCounter());
+        registerCommand("adddeaths", new DeathCounter());
+        registerCommand("refreshdeaths", new DeathCounter());
+
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");
@@ -121,6 +119,12 @@ public final class GlitzoriumSMP extends JavaPlugin {
         AntiCommandSpam.commandExecutions = new HashMap<>();
         AntiCommandSpam.check(getInstance());
         log = jda.getTextChannelById(1310679790226903089L);
+    }
+
+    private void registerCommand(String name, CommandExecutor executor) {
+        PluginCommand command = getCommand(name);
+        if (command != null) command.setExecutor(executor);
+        else getLogger().warning("Command '" + name + "' is not defined in plugin.yml!");
     }
 
     @Override
