@@ -1,6 +1,7 @@
 package de.construkter.glitzoriumSMP.whitelist;
 
 import de.construkter.glitzoriumSMP.GlitzoriumSMP;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +21,7 @@ public class WhitelistManager implements Listener {
             return;
         }
         if (!(getWhitelist(event.getPlayer()))) {
-            event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, "Du bist nicht auf der Whitelist.");
+            event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, ChatColor.RED + "Du bist nicht eingeladen auf diesem Server zu spielen!");
         }
     }
 

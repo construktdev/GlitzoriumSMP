@@ -47,6 +47,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static final List<Player> admins = new ArrayList<>();
     public static boolean whitelist = true;
     private static TextChannel log;
+    public static boolean ShopEnabled = false;
 
     @Override
     public void onEnable() {
@@ -118,7 +119,14 @@ public final class GlitzoriumSMP extends JavaPlugin {
         DeathCounter.setupDeathBoard();
         AntiCommandSpam.commandExecutions = new HashMap<>();
         AntiCommandSpam.check(getInstance());
-        log = jda.getTextChannelById(1310679790226903089L);
+        log = jda.getTextChannelById(1420470199295021137L);
+
+        try {
+            ShopEnabled = Boolean.parseBoolean(fileManager.getFileConfiguration().getString("shop"));
+        } catch (Exception e) {
+            getLogger().severe("shop value in config not set correctly");
+            ShopEnabled = false;
+        }
     }
 
     private void registerCommand(String name, CommandExecutor executor) {
