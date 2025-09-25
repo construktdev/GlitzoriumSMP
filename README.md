@@ -22,8 +22,6 @@
   - Dieses Plugin ist darauf ausgelegt das Spielerlebnis auch für Bedrock Spieler so gut wie möglich ist
   - Falls der Server unsigned chatting nicht zulässt, gibt es einen /chat Command, um trotzdem zu chatten
   - Es gibt eine Namen-basierte Whitelist, um auch Bedrock Spieler whitelisten zu können
-- Sonstiges
-  - SMP-Start System mit kleinem CraftAttack Insider Witz :)
  
 
 ## Aufsetzen
