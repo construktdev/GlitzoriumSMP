@@ -112,7 +112,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         } else {
             String token = fileManager.getFileConfiguration().getString("token");
             jda = DefaultShardManagerBuilder.createDefault(token)
-                    .setActivity(Activity.playing("glitzorium.de | 1.7.10 - 1.21.5"))
+                    .setActivity(Activity.playing("glitzorium.de | 1.21.x"))
                     .addEventListeners(new ReadyListener())
                     .build();
         }
@@ -150,8 +150,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     }
 
     public static void sendMessage(String type, String message) {
-
-        assert log != null;
+        maybeFixLog();
         EmbedBuilder embedBuilder = new EmbedBuilder();
         if (type.equals("Power Off")) {
             embedBuilder.setTitle("❌ • HelpOP " + type);
@@ -162,22 +161,30 @@ public final class GlitzoriumSMP extends JavaPlugin {
         embedBuilder.setColor(Color.ORANGE);
         embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
         embedBuilder.setTimestamp(Instant.now());
-        log.sendMessageEmbeds(embedBuilder.build()).queue();
+        try {
+            log.sendMessageEmbeds(embedBuilder.build()).queue();
+        } catch (Exception e) {
+            System.out.println("Could not send message to Discord log channel: " + e.getMessage());
+        }
     }
 
     public static void logChatMessage(String message, Player player) {
-        assert log != null;
+        maybeFixLog();
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle("📝 • HelpOP Chat Logger");
         embedBuilder.setDescription("**" + player.getName() + "** sendete die Nachricht: `" + message + "`");
         embedBuilder.setColor(Color.ORANGE);
         embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
         embedBuilder.setTimestamp(Instant.now());
-        log.sendMessageEmbeds(embedBuilder.build()).queue();
+        try {
+            log.sendMessageEmbeds(embedBuilder.build()).queue();
+        } catch (Exception e) {
+            System.out.println("Could not send message to Discord log channel: " + e.getMessage());
+        }
     }
 
     public static void logPLayer(boolean joined, Player player) {
-        assert log != null;
+        maybeFixLog();
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle("📝 • HelpOP Join/Leave Logger");
         if (joined) {
@@ -188,17 +195,31 @@ public final class GlitzoriumSMP extends JavaPlugin {
         embedBuilder.setColor(Color.ORANGE);
         embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
         embedBuilder.setTimestamp(Instant.now());
-        log.sendMessageEmbeds(embedBuilder.build()).queue();
+        try {
+            log.sendMessageEmbeds(embedBuilder.build()).queue();
+        } catch (Exception e) {
+            System.out.println("Could not send message to Discord log channel: " + e.getMessage());
+        }
     }
 
     public static void logShopPurchase(String item, Player player) {
-        assert log != null;
+        maybeFixLog();
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setTitle("💵 • HelpOP Shop Logger");
         embedBuilder.setTitle("**" + player.getName() + "** hat `" + item + "` gekauft.");
         embedBuilder.setColor(Color.ORANGE);
         embedBuilder.setFooter("HelpOP by Glitzorium", avatar);
         embedBuilder.setTimestamp(Instant.now());
-        log.sendMessageEmbeds(embedBuilder.build()).queue();
+        try {
+            log.sendMessageEmbeds(embedBuilder.build()).queue();
+        } catch (Exception e) {
+            System.out.println("Could not send message to Discord log channel: " + e.getMessage());
+        }
+    }
+
+    private static void maybeFixLog() {
+        if (log == null) {
+            log = jda.getTextChannelById("1420470199295021137");
+        }
     }
 }
