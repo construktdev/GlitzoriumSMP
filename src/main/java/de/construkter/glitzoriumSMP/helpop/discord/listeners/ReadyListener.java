@@ -19,7 +19,7 @@ public class ReadyListener extends ListenerAdapter {
         eb.setColor(Color.GREEN);
         eb.setFooter("HelpOP by Glitzorium", event.getJDA().getSelfUser().getAvatarUrl());
         eb.setTimestamp(Instant.now());
-        TextChannel log = event.getJDA().getTextChannelById(1310679790226903089L);
+        TextChannel log = event.getJDA().getTextChannelById(1420470199295021137L);
         assert log != null;
         log.sendMessageEmbeds(eb.build()).queue();
         GlitzoriumSMP.avatar = event.getJDA().getSelfUser().getAvatarUrl();

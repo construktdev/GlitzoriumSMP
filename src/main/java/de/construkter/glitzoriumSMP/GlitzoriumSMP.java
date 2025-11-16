@@ -46,7 +46,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     private static final HelpOP helpop = new HelpOP();
     public static final List<Player> admins = new ArrayList<>();
     public static boolean whitelist = true;
-    private static TextChannel log;
+    public static TextChannel log;
     public static boolean ShopEnabled = false;
 
     @Override
