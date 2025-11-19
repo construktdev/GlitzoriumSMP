@@ -5,6 +5,9 @@ import de.construkter.glitzoriumSMP.afksystem.AutoAFK;
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
 import de.construkter.glitzoriumSMP.automod.AntiCommandSpam;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
+import de.construkter.glitzoriumSMP.commandLimiter.CommandLimits;
+import de.construkter.glitzoriumSMP.commandLimiter.PreProcess;
+import de.construkter.glitzoriumSMP.commandLimiter.ResetCommand;
 import de.construkter.glitzoriumSMP.commands.*;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
 import de.construkter.glitzoriumSMP.helpop.commands.*;
@@ -48,6 +51,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static boolean whitelist = true;
     public static TextChannel log;
     public static boolean ShopEnabled = false;
+    public static CommandLimits commandLimits;
 
     @Override
     public void onEnable() {
@@ -71,6 +75,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AutoAFK(), this);
         getServer().getPluginManager().registerEvents(new Shop(), this);
         getServer().getPluginManager().registerEvents(new AntiCommandSpam(), this);
+        getServer().getPluginManager().registerEvents(new PreProcess(), this);
         registerCommand("lobby", new LobbyCommand());
         registerCommand("hub", new LobbyCommand());
         registerCommand("playeradd", new AddWhitelist());
@@ -98,6 +103,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         registerCommand("setdeaths", new DeathCounter());
         registerCommand("adddeaths", new DeathCounter());
         registerCommand("refreshdeaths", new DeathCounter());
+        registerCommand("resetlimit", new ResetCommand());
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
@@ -127,6 +133,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
             getLogger().severe("shop value in config not set correctly");
             ShopEnabled = false;
         }
+
+        commandLimits = new CommandLimits();
     }
 
     private void registerCommand(String name, CommandExecutor executor) {

@@ -94,3 +94,6 @@ commands:
     description: Lädt die Tode neu
     aliases:
       - rd
+  resetlimit:
+    description: Setzt das Limit für den Tag zurück
+    usage: /resetlimit <player>
