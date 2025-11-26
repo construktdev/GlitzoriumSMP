@@ -97,3 +97,6 @@ commands:
   resetlimit:
     description: Setzt das Limit für den Tag zurück
     usage: /resetlimit <player>
+  enable:
+    description: Aktiviert eine Dimension
+    usage: /enable <end|nether>

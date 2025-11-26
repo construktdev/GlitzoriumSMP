@@ -9,6 +9,7 @@ import de.construkter.glitzoriumSMP.commandLimiter.CommandLimits;
 import de.construkter.glitzoriumSMP.commandLimiter.PreProcess;
 import de.construkter.glitzoriumSMP.commandLimiter.ResetCommand;
 import de.construkter.glitzoriumSMP.commands.*;
+import de.construkter.glitzoriumSMP.dimensionLimit.DimensionEnableCommand;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
 import de.construkter.glitzoriumSMP.helpop.commands.*;
 import de.construkter.glitzoriumSMP.helpop.discord.listeners.ReadyListener;
@@ -16,10 +17,12 @@ import de.construkter.glitzoriumSMP.helpop.listeners.ChatListener;
 import de.construkter.glitzoriumSMP.helpop.listeners.EventLogger;
 import de.construkter.glitzoriumSMP.helpop.managers.FileManager;
 import de.construkter.glitzoriumSMP.listeners.JoinListener;
+import de.construkter.glitzoriumSMP.dimensionLimit.DimensionSwitchListener;
 import de.construkter.glitzoriumSMP.release.EventManager;
 import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
 import de.construkter.glitzoriumSMP.shop.Shop;
 import de.construkter.glitzoriumSMP.shop.ShopCommand;
+import de.construkter.glitzoriumSMP.spawnelytra.SpawnBoostListener;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
 import de.construkter.glitzoriumSMP.tablist.DeathCounter;
 import de.construkter.glitzoriumSMP.whitelist.AddWhitelist;
@@ -52,6 +55,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static TextChannel log;
     public static boolean ShopEnabled = false;
     public static CommandLimits commandLimits;
+    public static boolean netherEnabled = false;
+    public static boolean endEnabled = false;
 
     @Override
     public void onEnable() {
@@ -76,6 +81,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Shop(), this);
         getServer().getPluginManager().registerEvents(new AntiCommandSpam(), this);
         getServer().getPluginManager().registerEvents(new PreProcess(), this);
+        getServer().getPluginManager().registerEvents(new DimensionSwitchListener(), this);
+        getServer().getPluginManager().registerEvents(new SpawnBoostListener(this), this);
         registerCommand("lobby", new LobbyCommand());
         registerCommand("hub", new LobbyCommand());
         registerCommand("playeradd", new AddWhitelist());
@@ -104,6 +111,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         registerCommand("adddeaths", new DeathCounter());
         registerCommand("refreshdeaths", new DeathCounter());
         registerCommand("resetlimit", new ResetCommand());
+        registerCommand("enable", new DimensionEnableCommand());
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         PrepareStartCommand.isStarted = true;
@@ -131,10 +139,20 @@ public final class GlitzoriumSMP extends JavaPlugin {
             ShopEnabled = Boolean.parseBoolean(fileManager.getFileConfiguration().getString("shop"));
         } catch (Exception e) {
             getLogger().severe("shop value in config not set correctly");
-            ShopEnabled = false;
         }
 
         commandLimits = new CommandLimits();
+        try {
+            netherEnabled = Boolean.parseBoolean(fileManager.getFileConfiguration().getString("nether"));
+        } catch (Exception e) {
+            getLogger().severe("nether value in config not set correctly");
+        }
+
+        try {
+            endEnabled = Boolean.parseBoolean(fileManager.getFileConfiguration().getString("end"));
+        } catch (Exception e) {
+            getLogger().severe("end value in config not set correctly");
+        }
     }
 
     private void registerCommand(String name, CommandExecutor executor) {

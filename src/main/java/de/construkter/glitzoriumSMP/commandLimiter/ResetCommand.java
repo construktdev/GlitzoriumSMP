@@ -1,5 +1,6 @@
 package de.construkter.glitzoriumSMP.commandLimiter;
 
+import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,7 +28,7 @@ public class ResetCommand implements CommandExecutor {
             return true;
         }
 
-        CommandLimits cl = new CommandLimits();
+        CommandLimits cl = GlitzoriumSMP.commandLimits;
         cl.remove(player);
 
         commandSender.sendMessage(ChatColor.GREEN + "Command limits have been reset for " + ChatColor.BOLD + player.getName() + ChatColor.GREEN + ".");
