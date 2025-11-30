@@ -57,6 +57,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static CommandLimits commandLimits;
     public static boolean netherEnabled = false;
     public static boolean endEnabled = false;
+    public static boolean isStarted = false;
 
     @Override
     public void onEnable() {
@@ -112,9 +113,9 @@ public final class GlitzoriumSMP extends JavaPlugin {
         registerCommand("refreshdeaths", new DeathCounter());
         registerCommand("resetlimit", new ResetCommand());
         registerCommand("enable", new DimensionEnableCommand());
+        registerCommand("start", new PrepareStartCommand());
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-        PrepareStartCommand.isStarted = true;
         FileManager fileManager = new FileManager("config", "");
         if (fileManager.getFileConfiguration().getString("token") == null) {
             getLogger().info(" ");
@@ -152,6 +153,19 @@ public final class GlitzoriumSMP extends JavaPlugin {
             endEnabled = Boolean.parseBoolean(fileManager.getFileConfiguration().getString("end"));
         } catch (Exception e) {
             getLogger().severe("end value in config not set correctly");
+        }
+
+        try {
+            isStarted = Boolean.parseBoolean(fileManager.getFileConfiguration().getString("started"));
+        } catch (Exception e) {
+            getLogger().severe("started value in config not set correctly");
+        }
+
+        if (!isStarted) {
+            for (Player player : getServer().getOnlinePlayers()) {
+                player.teleport(getServer().getWorld("world").getSpawnLocation());
+            }
+            getServer().getWorld("world").getWorldBorder().setSize(24);
         }
     }
 

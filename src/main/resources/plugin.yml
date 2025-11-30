@@ -100,3 +100,10 @@ commands:
   enable:
     description: Aktiviert eine Dimension
     usage: /enable <end|nether>
+  start:
+    description: Startet den SMP
+
+permissions:
+  glitzorium.admin:
+    description: Erlaubt den Zugriff auf alle Admin Befehle
+    default: op

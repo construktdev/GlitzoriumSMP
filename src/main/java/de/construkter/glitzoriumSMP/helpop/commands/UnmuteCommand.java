@@ -15,7 +15,7 @@ import java.util.Objects;
 public class UnmuteCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("smp.helpop.unmute")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             List<Player> mutedPlayers = HelpOP.mutedPlayers;
             if (strings.length != 1) {
                 commandSender.sendMessage(ChatColor.RED + "Usage: /unmute <player>");

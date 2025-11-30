@@ -1,5 +1,6 @@
 package de.construkter.glitzoriumSMP.spawnelytra;
 
+import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import de.construkter.glitzoriumSMP.release.PrepareStartCommand;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -52,7 +53,7 @@ public class SpawnBoostListener implements Listener {
 
     @EventHandler
     public void onPlayerDoubleJump(PlayerToggleFlightEvent event) {
-        if (!PrepareStartCommand.isStarted) return;
+        if (!GlitzoriumSMP.isStarted) return;
         if (event.getPlayer().getGameMode() != GameMode.SURVIVAL) return;
         if (!isInSpawnRadius(event.getPlayer())) return;
         event.setCancelled(true);
@@ -67,8 +68,14 @@ public class SpawnBoostListener implements Listener {
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
-        if (event.getEntityType() != EntityType.PLAYER && (event.getCause() == EntityDamageEvent.DamageCause.FALL || event.getCause() == EntityDamageEvent.DamageCause.FLY_INTO_WALL) && flying.contains(event.getEntity())) event.setCancelled(true);
+        if (event.getEntityType() == EntityType.PLAYER
+                && (event.getCause() == EntityDamageEvent.DamageCause.FALL
+                || event.getCause() == EntityDamageEvent.DamageCause.FLY_INTO_WALL)
+                && flying.contains((Player) event.getEntity())) {
+            event.setCancelled(true);
+        }
     }
+
 
     @EventHandler
     public void onPLayerSwapItems(PlayerSwapHandItemsEvent event) {
@@ -88,7 +95,7 @@ public class SpawnBoostListener implements Listener {
     }
 
     private boolean isInSpawnRadius(Player player) {
-        if (!player.getWorld().getName().equals("world")) return false;
+        // if (!player.getWorld().getName().equals("world")) return false;
         return player.getWorld().getSpawnLocation().distance(player.getLocation()) <= spawnRadius;
     }
 }

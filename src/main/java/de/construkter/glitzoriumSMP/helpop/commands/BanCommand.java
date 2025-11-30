@@ -16,7 +16,7 @@ import java.util.Objects;
 public class BanCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("smp.helpop.ban")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             if (strings.length == 1 || strings.length == 0) {
                 commandSender.sendMessage(ChatColor.RED + "Usage: /ban <player> <reason>");
                 return true;
@@ -31,7 +31,7 @@ public class BanCommand implements CommandExecutor {
             helpop.ban(Objects.requireNonNull(Bukkit.getPlayer(strings[0])), (Player) commandSender, reasonString);
             commandSender.sendMessage(ChatColor.GREEN + "Banned " + ChatColor.GOLD + strings[0] + ChatColor.GREEN + " for " + ChatColor.GOLD + reasonString);
             for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("smp.helpop.ban")) {
+                if (player.hasPermission("glitzorium.admin")) {
                     if (!commandSender.getName().equals(player.getName())) {
                         player.sendMessage(Prefix.helpOP() + ChatColor.DARK_AQUA + commandSender.getName() + " hat " + strings[0] + "für " + ChatColor.GOLD + reasonString + " gebannt.");
                     }

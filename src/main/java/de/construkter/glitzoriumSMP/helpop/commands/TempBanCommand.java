@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class TempBanCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("gltzorium.smp.tempban")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             Player moderator = (Player) commandSender;
             Player target = Bukkit.getPlayer(strings[0]);
 
@@ -81,7 +81,7 @@ public class TempBanCommand implements CommandExecutor {
 
                 commandSender.sendMessage(ChatColor.GREEN + "Banned " + ChatColor.GOLD + strings[0] + ChatColor.GREEN + " for " + ChatColor.GOLD + reasonString + ", " + ChatColor.GOLD + duration);
                 for (Player player : Bukkit.getOnlinePlayers()) {
-                    if (player.hasPermission("smp.helpop.ban")) {
+                    if (player.hasPermission("glitzorium.admin")) {
                         if (!commandSender.getName().equals(player.getName())) {
                             player.sendMessage(Prefix.helpOP() + ChatColor.DARK_AQUA + commandSender.getName() + " hat " + strings[0] + "für " + ChatColor.GOLD + reasonString + " gebannt.");
                         }

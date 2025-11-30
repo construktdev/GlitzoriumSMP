@@ -1,5 +1,6 @@
 package de.construkter.glitzoriumSMP.release;
 
+import de.construkter.glitzoriumSMP.GlitzoriumSMP;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -12,7 +13,7 @@ public class EventManager implements Listener {
         if (event.getPlayer().hasPermission("glitzorium.admin")) {
             return;
         }
-        if (!PrepareStartCommand.isStarted) {
+        if (!GlitzoriumSMP.isStarted) {
             event.setCancelled(true);
         }
     }
@@ -22,14 +23,14 @@ public class EventManager implements Listener {
         if (event.getPlayer().hasPermission("glitzorium.admin")) {
             return;
         }
-        if (!PrepareStartCommand.isStarted) {
+        if (!GlitzoriumSMP.isStarted) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onDamage(EntityDamageEvent event) {
-        if (!PrepareStartCommand.isStarted) {
+        if (!GlitzoriumSMP.isStarted) {
             event.setCancelled(true);
         }
     }

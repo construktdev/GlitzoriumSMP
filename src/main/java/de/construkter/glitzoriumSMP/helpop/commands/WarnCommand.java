@@ -18,7 +18,7 @@ import java.util.Objects;
 public class WarnCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("smp.helpop.warn")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             if (strings.length == 1 || strings.length == 0) {
                 commandSender.sendMessage(ChatColor.RED + "Usage: /warn <player> <reason>");
                 return true;
