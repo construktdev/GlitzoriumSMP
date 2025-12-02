@@ -115,6 +115,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         registerCommand("enable", new DimensionEnableCommand());
         registerCommand("start", new PrepareStartCommand());
         registerCommand("simulate", new SimulateCommand());
+        registerCommand("tpsbar", new TpsBarCommand());
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         FileManager fileManager = new FileManager("config", "");
@@ -168,6 +169,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
             }
             getServer().getWorld("world").getWorldBorder().setSize(24);
         }
+
+        TPSCalculator.start(this);
     }
 
     private void registerCommand(String name, CommandExecutor executor) {

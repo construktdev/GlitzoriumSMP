@@ -105,6 +105,9 @@ commands:
   simulate:
     description: Simuliert etwas
     usage: /simulate <event>
+  tpsbar:
+    description: Zeigt die TPS in der Bossbar an
+    usage: /tpsbar
 
 permissions:
   glitzorium.admin:
