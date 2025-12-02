@@ -16,7 +16,12 @@ public class PreProcess implements Listener {
         Player player = event.getPlayer();
         int limit = GlitzoriumSMP.commandLimits.getAmount(player);
 
-        if (event.getMessage().split(" ")[0].equalsIgnoreCase("/co")) {
+        if (event.getMessage().split(" ")[0].equalsIgnoreCase("/co") ||
+                event.getMessage().split(" ")[0].equalsIgnoreCase("/coreprotect") ||
+                event.getMessage().split(" ")[0].equalsIgnoreCase("/co-glitzox:co") ||
+                event.getMessage().split(" ")[0].equalsIgnoreCase("/co-glitzox:coreprotect") ||
+                event.getMessage().split(" ")[0].equalsIgnoreCase("/co-glitzox:core") ||
+                event.getMessage().split(" ")[0].equalsIgnoreCase("/core")){
             if (limit >= 6) {
                 player.sendMessage(ChatColor.RED + "Du hast dein tägliches CoreProtect Limit erreicht!");
                 event.setCancelled(true);

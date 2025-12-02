@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class TrollCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("gltz.smp.commands.troll")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             if (strings.length == 0 || strings.length == 1)  {
                 commandSender.sendMessage(ChatColor.RED + "You need to specify a message and a target player.");
                 return true;

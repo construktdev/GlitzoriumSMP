@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 public class AddWhitelist implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (commandSender.hasPermission("glitzorium.whitelist.add")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             if (strings.length != 1) {
                 commandSender.sendMessage(ChatColor.RED + "Usage: /playeradd <name>");
                 return false;

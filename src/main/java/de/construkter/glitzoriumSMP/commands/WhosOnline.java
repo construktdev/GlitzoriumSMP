@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class WhosOnline implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("smp.admin")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             commandSender.sendMessage(ChatColor.GOLD + "------ Online Players ------");
             int i = 1;
             for (Player player : Bukkit.getOnlinePlayers()) {

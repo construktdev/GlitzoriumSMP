@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class InventoryCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (!commandSender.hasPermission("gltzorium.smp.invsee")) {
+        if (!commandSender.hasPermission("glitzorium.admin")) {
             commandSender.sendMessage(ChatColor.RED + "You don't have permission to use this command!");
             return true;
         }

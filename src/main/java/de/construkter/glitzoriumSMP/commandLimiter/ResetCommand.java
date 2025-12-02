@@ -12,7 +12,7 @@ public class ResetCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (!commandSender.hasPermission("glitzoriumSMP.reset")) {
+        if (!commandSender.hasPermission("glitzorium.admin")) {
             commandSender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
             return  true;
         }

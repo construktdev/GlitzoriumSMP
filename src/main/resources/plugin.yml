@@ -102,6 +102,9 @@ commands:
     usage: /enable <end|nether>
   start:
     description: Startet den SMP
+  simulate:
+    description: Simuliert etwas
+    usage: /simulate <event>
 
 permissions:
   glitzorium.admin:

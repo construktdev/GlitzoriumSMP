@@ -114,6 +114,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         registerCommand("resetlimit", new ResetCommand());
         registerCommand("enable", new DimensionEnableCommand());
         registerCommand("start", new PrepareStartCommand());
+        registerCommand("simulate", new SimulateCommand());
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         FileManager fileManager = new FileManager("config", "");

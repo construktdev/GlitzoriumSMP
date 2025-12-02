@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class ClearWarnsCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("smp.command.clearwarns")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             if (strings.length != 1) {
                 commandSender.sendMessage("Usage: /clearwarns <player>");
                 return true;

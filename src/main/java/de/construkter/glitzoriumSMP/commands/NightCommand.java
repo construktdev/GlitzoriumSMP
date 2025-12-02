@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 public class NightCommand extends CommandForward implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (commandSender.hasPermission("smp.command.forward")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             forward("time", "set night");
             return true;
         }

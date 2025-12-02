@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 public class RemoveWhitelist implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (commandSender.hasPermission("glitzorium.whitelist.remove")) {
+        if (commandSender.hasPermission("glitzorium.admin")) {
             if (strings.length != 1) {
                 commandSender.sendMessage(ChatColor.RED + "Usage: /playerremove <name>");
                 return false;
