@@ -12,7 +12,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.UUID;
 
 public class TpsBarCommand implements CommandExecutor {
@@ -62,13 +61,15 @@ public class TpsBarCommand implements CommandExecutor {
 
                 double tps = TPSCalculator.getTPS();
                 double mspt = TPSCalculator.getMSPT();
+                double ping = player.getPing();
 
                 bar.setColor(getColor(tps));
                 bar.setProgress(Math.min(tps / 20.0, 1.0));
                 bar.setTitle(String.format(
-                        "§fTPS: §a%.2f §7| §fMSPT: §b%.2f",
+                        "§fTPS: §a%.2f §7| §fMSPT: §b%.2f §7| §fPing: §e%.0fms",
                         tps,
-                        mspt
+                        mspt,
+                        ping
                 ));
             }
         }.runTaskTimer(plugin, 0L, 20L);
