@@ -11,7 +11,7 @@ public class BadWords {
                 "jerk", "cocksucker", "faggot", "tits", "nigga", "nigger", "hoe",
                 "retard", "skank", "bimbo", "harlot", "nigare", "niggerman", "nigroman",
                 "niger", "hure", "huhre", "huree", "hureee", "hureeee", "hureeeee",
-                "hail", "heil", "hitler", "ni99er", "ni99a", "ni9er", "ni9a"
+                "hail", "heil", "hitler", "ni99er", "ni99a", "ni9er", "ni9a", "Hurensohn"
         };
     }
 
