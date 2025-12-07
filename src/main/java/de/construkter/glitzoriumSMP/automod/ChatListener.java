@@ -17,11 +17,10 @@ public class ChatListener implements Listener {
     public static HashMap<Player, Integer> warnings = new HashMap<>();
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
-        // Anti Message Report
         List<Player> mutedPlayers = HelpOP.mutedPlayers;
         boolean allowed = true;
         event.setCancelled(true);
-        // lol das wars schon wie einfach XD
+
         String message = event.getMessage();
                 if (ChatFilter.containsBadLanguage(message)) {
                     GlitzoriumSMP.sendMessage("AutoMod", "**" + event.getPlayer().getName() + "** hat ein verbotenes Wort gesagt");
@@ -40,9 +39,9 @@ public class ChatListener implements Listener {
         }
 
         HelpOP helpOP = new HelpOP();
-        if (warnings.containsKey(event.getPlayer()) && warnings.get(event.getPlayer()) == 3) {
+        if (warnings.containsKey(event.getPlayer()) && warnings.get(event.getPlayer()) == 3 && !allowed) {
             helpOP.kick(event.getPlayer(), event.getPlayer(), "Du hast 3 mal ein verbotenes Wort gesagt.");
-        } else if (warnings.containsKey(event.getPlayer()) && warnings.get(event.getPlayer()) == 5) {
+        } else if (warnings.containsKey(event.getPlayer()) && warnings.get(event.getPlayer()) == 5 && !allowed) {
             helpOP.ban(event.getPlayer(), event.getPlayer(), "Du hast 5 mal ein verbotenes Wort gesagt.\nBitte achte auf deine Sprache.");
         }
     }
