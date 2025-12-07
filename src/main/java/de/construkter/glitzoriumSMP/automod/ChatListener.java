@@ -18,10 +18,8 @@ public class ChatListener implements Listener {
     public void onChat(AsyncPlayerChatEvent event) {
         // Anti Message Report
         List<Player> mutedPlayers = HelpOP.mutedPlayers;
+        boolean allowed = true;
         event.setCancelled(true);
-        if (!mutedPlayers.contains(event.getPlayer())) {
-            Bukkit.broadcastMessage("<" + event.getPlayer().getName() + "> " + event.getMessage());
-        }
         // lol das wars schon wie einfach XD
         String message = event.getMessage();
         for (String word : BadWords.getBadWords()) {
@@ -36,9 +34,13 @@ public class ChatListener implements Listener {
                     } else {
                         warnings.put(event.getPlayer(), 1);
                     }
+                    allowed = false;
                 }
             }
+        }
 
+        if (!mutedPlayers.contains(event.getPlayer()) && allowed) {
+            Bukkit.broadcastMessage("<" + event.getPlayer().getName() + "> " + event.getMessage());
         }
 
         HelpOP helpOP = new HelpOP();
