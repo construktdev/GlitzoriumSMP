@@ -29,7 +29,7 @@ public class HelpOP {
         Bukkit.getScheduler().runTask(GlitzoriumSMP.getInstance(), () -> {
             GlitzoriumSMP.sendMessage("Warn","**" + target.getName() + "** wurde von **" + moderator.getName() + "** gewarnt!\n Grund: " + reason);
             target.sendMessage(Prefix.PluginPrefix() + ChatColor.RED + "Du wurdest gewarnt! Grund: " + ChatColor.DARK_RED + reason);
-            target.sendMessage(Prefix.helpOP() + ChatColor.RED + "Falls du denkst, dass dies ein Fehler ist, besuche https://glitzorium.de/support/general/support.php");
+            target.sendMessage(Prefix.helpOP() + ChatColor.RED + "Falls du denkst, dass dies ein Fehler ist, besuche https://glitzorium.de/support/");
         });
     }
 
@@ -82,7 +82,7 @@ public class HelpOP {
             mutedPlayers.add(target);
             GlitzoriumSMP.sendMessage("Mute","**" + target.getName() + "** wurde von **" + moderator.getName() + "** gemuted!\n Grund: " + reason + "\n\nNote: Spieler müssen manuell mit /unmute <player> entmuted werden!");
             target.sendMessage(Prefix.PluginPrefix() + ChatColor.RED + "Du wurdest gemuted! Grund: " + ChatColor.DARK_RED + reason);
-            target.sendMessage(Prefix.helpOP() + ChatColor.RED + "Falls du denkst, dass dies ein Fehler ist, besuche https://glitzorium.de/support/general/support.php");
+            target.sendMessage(Prefix.helpOP() + ChatColor.RED + "Falls du denkst, dass dies ein Fehler ist, besuche https://glitzorium.de/support/");
         });
     }
 }

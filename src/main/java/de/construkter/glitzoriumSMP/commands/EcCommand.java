@@ -15,16 +15,18 @@ public class EcCommand implements CommandExecutor {
             commandSender.sendMessage(ChatColor.RED + "You don't have permission to use this command!");
             return true;
         }
-        if (strings.length != 1) {
-            commandSender.sendMessage(ChatColor.RED + "Usage: /ec <player>");
-            return true;
-        }
+
         Player target = Bukkit.getPlayer(strings[0]);
+        if (strings.length != 1) {
+            target = (Player)  commandSender;
+        }
+
         Player admin = (Player) commandSender;
 
         if (target == null) {
             target = Bukkit.getPlayer(strings[0]);
         }
+
         if (target == null) {
             commandSender.sendMessage(ChatColor.RED + "Player not found!");
             return true;

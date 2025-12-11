@@ -21,6 +21,7 @@ public class PlayTimeCommand implements CommandExecutor {
         if (player == null) {
             player = (Player) commandSender;
         }
+
         int ticks = player.getStatistic(Statistic.PLAY_ONE_MINUTE);
         int totalSeconds = ticks / 20;
 
