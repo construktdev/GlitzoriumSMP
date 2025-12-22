@@ -2,6 +2,7 @@ package de.construkter.glitzoriumSMP.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,7 +29,8 @@ public class EcCommand implements CommandExecutor {
         }
 
         if (target == null) {
-            commandSender.sendMessage(ChatColor.RED + "Player not found!");
+            OfflinePlayer offlineTarget = Bukkit.getOfflinePlayer(strings[0]);
+            admin.openInventory(target.getEnderChest());
             return true;
         }
 

@@ -58,6 +58,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static boolean netherEnabled = false;
     public static boolean endEnabled = false;
     public static boolean isStarted = false;
+    public static String pteroKey = "null";
 
     @Override
     public void onEnable() {
@@ -171,6 +172,12 @@ public final class GlitzoriumSMP extends JavaPlugin {
         }
 
         TPSCalculator.start(this);
+
+        try {
+            pteroKey = fileManager.getFileConfiguration().getString("pteroKey");
+        } catch (Exception e) {
+            getLogger().severe("pteroKey value in config not set correctly");
+        }
     }
 
     private void registerCommand(String name, CommandExecutor executor) {
