@@ -5,6 +5,7 @@ import de.construkter.glitzoriumSMP.afksystem.AutoAFK;
 import de.construkter.glitzoriumSMP.antibot.AntiRaid;
 import de.construkter.glitzoriumSMP.automod.AntiCommandSpam;
 import de.construkter.glitzoriumSMP.bedrock.ChatCommand;
+import de.construkter.glitzoriumSMP.btrestart.RestartCommand;
 import de.construkter.glitzoriumSMP.commandLimiter.CommandLimits;
 import de.construkter.glitzoriumSMP.commandLimiter.PreProcess;
 import de.construkter.glitzoriumSMP.commandLimiter.ResetCommand;
@@ -117,6 +118,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
         registerCommand("start", new PrepareStartCommand());
         registerCommand("simulate", new SimulateCommand());
         registerCommand("tpsbar", new TpsBarCommand());
+        registerCommand("restart", new RestartCommand());
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         FileManager fileManager = new FileManager("config", "");
