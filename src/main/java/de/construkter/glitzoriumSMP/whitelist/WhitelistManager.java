@@ -15,16 +15,6 @@ public class WhitelistManager implements Listener {
 
     static String WHITELIST_FILE = "glitzorium-whitelist.txt";
 
-    @EventHandler
-    public void onPlayerLogin(PlayerLoginEvent event) {
-        if (!GlitzoriumSMP.whitelist) {
-            return;
-        }
-        if (!(getWhitelist(event.getPlayer()))) {
-            event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, ChatColor.RED + "Du bist nicht eingeladen auf diesem Server zu spielen!");
-        }
-    }
-
     public static String addPlayer(String player) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(WHITELIST_FILE, true))) {
             writer.println(player);
@@ -91,6 +81,18 @@ public class WhitelistManager implements Listener {
             return players.contains(player.getName());
         } catch (IOException e) {
             return false;
+        }
+    }
+
+    @EventHandler
+    public void onPlayerLogin(PlayerLoginEvent event) {
+        if (!GlitzoriumSMP.whitelist) {
+            return;
+        }
+        if (!(getWhitelist(event.getPlayer()))) {
+            event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, ChatColor.RED + "Dieser Server ist invite-only!\n\n"
+                    + ChatColor.YELLOW + "Du bist nicht auf der Whitelist!\n"
+                    + ChatColor.YELLOW + "Bitte kontaktiere einen Administrator, um Zugang zu erhalten.");
         }
     }
 }
