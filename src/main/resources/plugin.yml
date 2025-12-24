@@ -108,8 +108,11 @@ commands:
   tpsbar:
     description: Zeigt die TPS in der Bossbar an
     usage: /tpsbar
-  restart:
+  reboot:
     description: Startet den Server neu
+  tpsmonitor:
+    description: Überwacht die TPS und benachrichtigt bei Problemen
+    usage: /tpsmonitor
 
 permissions:
   glitzorium.admin:

@@ -13,6 +13,8 @@ import de.construkter.glitzoriumSMP.commands.*;
 import de.construkter.glitzoriumSMP.dimensionLimit.DimensionEnableCommand;
 import de.construkter.glitzoriumSMP.helpop.HelpOP;
 import de.construkter.glitzoriumSMP.helpop.commands.*;
+import de.construkter.glitzoriumSMP.helpop.discord.commands.ConsoleCommand;
+import de.construkter.glitzoriumSMP.helpop.discord.commands.OnlineCommand;
 import de.construkter.glitzoriumSMP.helpop.discord.listeners.ReadyListener;
 import de.construkter.glitzoriumSMP.helpop.listeners.ChatListener;
 import de.construkter.glitzoriumSMP.helpop.listeners.EventLogger;
@@ -30,8 +32,13 @@ import de.construkter.glitzoriumSMP.whitelist.AddWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.RemoveWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.WhitelistManager;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
 import org.bukkit.command.CommandExecutor;
@@ -48,7 +55,7 @@ import java.util.List;
 public final class GlitzoriumSMP extends JavaPlugin {
 
     private static GlitzoriumSMP instance;
-    private static ShardManager jda;
+    private static JDA jda;
     public static String avatar;
     private static final HelpOP helpop = new HelpOP();
     public static final List<Player> admins = new ArrayList<>();
@@ -118,7 +125,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         registerCommand("start", new PrepareStartCommand());
         registerCommand("simulate", new SimulateCommand());
         registerCommand("tpsbar", new TpsBarCommand());
-        registerCommand("restart", new RestartCommand());
+        registerCommand("reboot", new RestartCommand());
+        registerCommand("tpsmonitor", new TPSMonitor());
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         FileManager fileManager = new FileManager("config", "");
@@ -131,10 +139,24 @@ public final class GlitzoriumSMP extends JavaPlugin {
             fileManager.getFileConfiguration().set("token", "token-here");
         } else {
             String token = fileManager.getFileConfiguration().getString("token");
-            jda = DefaultShardManagerBuilder.createDefault(token)
+            jda = JDABuilder.createDefault(token)
                     .setActivity(Activity.playing("glitzorium.de | 1.21.x"))
-                    .addEventListeners(new ReadyListener())
+                    .addEventListeners(new ReadyListener(), new OnlineCommand(), new ConsoleCommand())
                     .build();
+
+            try {
+                jda.awaitReady();
+            } catch (InterruptedException e) {
+                getLogger().info(e.getMessage());
+            }
+
+            for (Guild guild : jda.getGuilds()) {
+                guild.updateCommands().addCommands(
+                    Commands.slash("list", "Zeigt alle Spieler die gerade online sind."),
+                    Commands.slash("console", "Führt einen Befehl auf dem Server aus.")
+                        .addOption(OptionType.STRING, "command", "Der auszuführende Befehl.", true)
+                ).queue();
+            }
         }
         DeathCounter.setupDeathBoard();
         AntiCommandSpam.commandExecutions = new HashMap<>();
@@ -191,6 +213,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     @Override
     public void onDisable() {
         sendMessage("Power Off", "Der Server wurde gestoppt!");
+        jda.shutdown();
         saveConfig();
     }
 

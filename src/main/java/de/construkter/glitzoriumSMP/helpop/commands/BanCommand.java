@@ -33,7 +33,7 @@ public class BanCommand implements CommandExecutor {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 if (player.hasPermission("glitzorium.admin")) {
                     if (!commandSender.getName().equals(player.getName())) {
-                        player.sendMessage(Prefix.helpOP() + ChatColor.DARK_AQUA + commandSender.getName() + " hat " + strings[0] + "für " + ChatColor.GOLD + reasonString + " gebannt.");
+                        player.sendMessage(Prefix.helpOP() + ChatColor.DARK_AQUA + commandSender.getName() + " hat " + strings[0] + " für " + ChatColor.GOLD + reasonString + " gebannt.");
                     }
                 }
             }
