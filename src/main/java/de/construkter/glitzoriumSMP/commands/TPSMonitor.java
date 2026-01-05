@@ -31,10 +31,7 @@ public class TPSMonitor implements CommandExecutor {
                 BukkitRunnable runnable = new BukkitRunnable() {
                     @Override
                     public void run() {
-                        HelpOPSender sender = new HelpOPSender(player.getName());
-                        Bukkit.dispatchCommand(sender, "tps");
-                        String tps = sender.getOutput();
-                        player.sendMessage(tps);
+                        Bukkit.dispatchCommand(commandSender, "tps");
                     }
                 };
 
