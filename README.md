@@ -22,6 +22,9 @@
   - Dieses Plugin ist darauf ausgelegt das Spielerlebnis auch für Bedrock Spieler so gut wie möglich ist
   - Falls der Server unsigned chatting nicht zulässt, gibt es einen /chat Command, um trotzdem zu chatten
   - Es gibt eine Namen-basierte Whitelist, um auch Bedrock Spieler whitelisten zu können
+- Admin Systeme
+  - Es gibt eine TPS Bar auf welcher die TPS, MSPT und der Spieler Ping angezeigt werden
+  - Falls dies nicht akurat genug ist kann mit `/tpsmonitor` aller 10 Sekunden automatisch die TPS überprüft werden
  
 
 ## Aufsetzen
