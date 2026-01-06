@@ -9,7 +9,8 @@
   - Discord Logging Implementation
     - In der config.yml muss dafür ein token festgelegt werden, und in der Main-Klasse der Logging-Kanal
   - warn, mute, kick und ban command
-  - AutoMod für einen sauberen Chat
+  - AutoMod für einen sauberen Chat (RegEx basiert)
+  - Discord Commands zum Commands ausführen oder für Online Players
 - Short Commands
   - Commands die oft eingegeben werden müssen sind verkürzt
   - Zurzeit implementiert: /day, /night, /sun, /gm 0|1|2|3
@@ -25,6 +26,8 @@
 - Admin Systeme
   - Es gibt eine TPS Bar auf welcher die TPS, MSPT und der Spieler Ping angezeigt werden
   - Falls dies nicht akurat genug ist kann mit `/tpsmonitor` aller 10 Sekunden automatisch die TPS überprüft werden
+- Gameplay Enhancement
+  - Für saubere Restarts gibt es einen ingame Restart command bei welchem eine Message und der Delay übergeben werden kann
  
 
 ## Aufsetzen
