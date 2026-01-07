@@ -35,13 +35,13 @@
 1. In der Klasse GlitzoriumSMP.java die Kanal-ID zum logging Kanal setzen (am Ende der onEnable())
 2. In der Klasse Prefix.java (package: utils) nötige Prefixes ändern
 3. In der Klasse SpawnBoostListener.java den SpawnRadius und Boost Faktor für die Spawn Elytra ändern
-4. Gegebenenfalls in BadWords.java den AutoMod Filter ändern (getBadWords())
+4. Gegebenenfalls in ChatFilter.java den AutoMod Filter ändern
 5. Das Plugin kompillieren <br>
    5.1 Mit IntelliJ: <br>
      5.1.1 Auf das Maven Symbol (m) Rechts in der Navigationsleiste klicken <br>
      5.1.2 Lifecycle erweitern <br>
      5.1.3 Doppelclick auf 'package' <br>
-     5.1.4 Aus dem Ordner /target die Datei 'GlitzoriumSMP-1.0-SNAPSHOT-shaded.jar' kopieren
+     5.1.4 Aus dem Ordner /target die Datei 'GlitzoriumSMP-1.0-SNAPSHOT.jar' kopieren
 
 ## Bei Fragen
 https://glitzorium.de/support <br>
