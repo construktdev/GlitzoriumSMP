@@ -17,7 +17,7 @@ public class TotemShopItem implements ShopItem {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(ChatColor.GOLD + "Totem");
-            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 2 Diamanten"));
+            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 15 Diamanten"));
             item.setItemMeta(meta);
         }
         return item;
@@ -25,7 +25,7 @@ public class TotemShopItem implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 2;
+        return 15;
     }
 
     @Override

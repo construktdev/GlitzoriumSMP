@@ -17,7 +17,7 @@ public class EmeraldBlockShopItem implements ShopItem {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(ChatColor.DARK_GREEN + "5 Emerald Blöcke");
-            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 1 Diamant"));
+            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 5 Diamanten"));
             item.setItemMeta(meta);
         }
         return item;
@@ -25,7 +25,7 @@ public class EmeraldBlockShopItem implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 1;
+        return 5;
     }
 
     @Override

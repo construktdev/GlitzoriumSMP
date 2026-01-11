@@ -18,7 +18,7 @@ public class RocketItemShop implements ShopItem {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(ChatColor.DARK_GREEN + "64 Raketen");
-            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 2 Diamanten"));
+            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 5 Diamanten"));
             item.setItemMeta(meta);
         }
         return item;
@@ -26,7 +26,7 @@ public class RocketItemShop implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 2;
+        return 5;
     }
 
     @Override

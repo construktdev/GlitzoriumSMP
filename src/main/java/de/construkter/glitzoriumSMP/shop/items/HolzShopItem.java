@@ -18,7 +18,7 @@ public class HolzShopItem implements ShopItem {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(ChatColor.DARK_GREEN + "32 Oak Logs");
-            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 2 Diamanten"));
+            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 10 Diamanten"));
             item.setItemMeta(meta);
         }
         return item;
@@ -26,7 +26,7 @@ public class HolzShopItem implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 2;
+        return 10;
     }
 
     @Override

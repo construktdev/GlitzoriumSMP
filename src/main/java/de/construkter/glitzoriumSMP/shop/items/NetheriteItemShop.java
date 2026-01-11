@@ -18,7 +18,7 @@ public class NetheriteItemShop implements ShopItem {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(ChatColor.DARK_GREEN + "Nethrite Ingot");
-            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 64 Diamanten"));
+            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 128 Diamanten"));
             item.setItemMeta(meta);
         }
         return item;
@@ -26,7 +26,7 @@ public class NetheriteItemShop implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 64;
+        return 128;
     }
 
     @Override

@@ -18,7 +18,7 @@ public class TemplateShopItem implements ShopItem {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(ChatColor.RED + "Upgrade Template");
-            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 20 Diamanten"));
+            meta.setLore(Collections.singletonList(ChatColor.AQUA + "Preis: 48 Diamanten"));
             item.setItemMeta(meta);
         }
         return item;
@@ -26,7 +26,7 @@ public class TemplateShopItem implements ShopItem {
 
     @Override
     public int getPrice() {
-        return 20;
+        return 48;
     }
 
     @Override
