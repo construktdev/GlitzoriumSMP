@@ -9,7 +9,8 @@
   - Discord Logging Implementation
     - In der config.yml muss dafür ein token festgelegt werden, und in der Main-Klasse der Logging-Kanal
   - warn, mute, kick und ban command
-  - AutoMod für einen sauberen Chat
+  - AutoMod für einen sauberen Chat (RegEx basiert)
+  - Discord Commands zum Commands ausführen oder für Online Players
 - Short Commands
   - Commands die oft eingegeben werden müssen sind verkürzt
   - Zurzeit implementiert: /day, /night, /sun, /gm 0|1|2|3
@@ -22,6 +23,11 @@
   - Dieses Plugin ist darauf ausgelegt das Spielerlebnis auch für Bedrock Spieler so gut wie möglich ist
   - Falls der Server unsigned chatting nicht zulässt, gibt es einen /chat Command, um trotzdem zu chatten
   - Es gibt eine Namen-basierte Whitelist, um auch Bedrock Spieler whitelisten zu können
+- Admin Systeme
+  - Es gibt eine TPS Bar auf welcher die TPS, MSPT und der Spieler Ping angezeigt werden
+  - Falls dies nicht akurat genug ist kann mit `/tpsmonitor` aller 10 Sekunden automatisch die TPS überprüft werden
+- Gameplay Enhancement
+  - Für saubere Restarts gibt es einen ingame Restart command bei welchem eine Message und der Delay übergeben werden kann
  
 
 ## Aufsetzen
@@ -29,13 +35,13 @@
 1. In der Klasse GlitzoriumSMP.java die Kanal-ID zum logging Kanal setzen (am Ende der onEnable())
 2. In der Klasse Prefix.java (package: utils) nötige Prefixes ändern
 3. In der Klasse SpawnBoostListener.java den SpawnRadius und Boost Faktor für die Spawn Elytra ändern
-4. Gegebenenfalls in BadWords.java den AutoMod Filter ändern (getBadWords())
+4. Gegebenenfalls in ChatFilter.java den AutoMod Filter ändern
 5. Das Plugin kompillieren <br>
    5.1 Mit IntelliJ: <br>
      5.1.1 Auf das Maven Symbol (m) Rechts in der Navigationsleiste klicken <br>
      5.1.2 Lifecycle erweitern <br>
      5.1.3 Doppelclick auf 'package' <br>
-     5.1.4 Aus dem Ordner /target die Datei 'GlitzoriumSMP-1.0-SNAPSHOT-shaded.jar' kopieren
+     5.1.4 Aus dem Ordner /target die Datei 'GlitzoriumSMP-1.0-SNAPSHOT.jar' kopieren
 
 ## Bei Fragen
 https://glitzorium.de/support <br>
