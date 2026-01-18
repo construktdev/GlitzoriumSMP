@@ -25,7 +25,8 @@ public class Shop implements Listener {
             new RocketItemShop(),
             new TemplateShopItem(),
             new HolzShopItem(),
-            new EnderChestShopItem()
+            new EnderChestShopItem(),
+            new SteakShopItem()
     );
 
     public void openShop(Player player) {
