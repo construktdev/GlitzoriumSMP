@@ -41,7 +41,7 @@ public class RestartCommand implements CommandExecutor {
                 @Override
                 public void run() {
                     PterodactylAPI api = new PterodactylAPI(GlitzoriumSMP.pteroKey, "https://panel.glitzorium.construkter.dev");
-                    api.sendSignal("dd25f011", "restart");
+                    int response = api.sendSignal("dd25f011", "restart");
                 }
             }.runTaskLater(GlitzoriumSMP.getInstance(), delay * 20L);
         } catch (NumberFormatException e) {
