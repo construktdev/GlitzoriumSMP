@@ -28,6 +28,7 @@ import de.construkter.glitzoriumSMP.shop.ShopCommand;
 import de.construkter.glitzoriumSMP.spawnelytra.SpawnBoostListener;
 import de.construkter.glitzoriumSMP.tablist.StatusCommand;
 import de.construkter.glitzoriumSMP.tablist.DeathCounter;
+import de.construkter.glitzoriumSMP.utils.FileHandler;
 import de.construkter.glitzoriumSMP.whitelist.AddWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.RemoveWhitelist;
 import de.construkter.glitzoriumSMP.whitelist.WhitelistManager;
@@ -67,6 +68,7 @@ public final class GlitzoriumSMP extends JavaPlugin {
     public static boolean endEnabled = false;
     public static boolean isStarted = false;
     public static String pteroKey = "null";
+    public static final FileHandler LOGGER = new FileHandler("helpop.log");
 
     @Override
     public void onEnable() {
@@ -242,6 +244,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         } catch (Exception e) {
             System.out.println("Could not send message to Discord log channel: " + e.getMessage());
         }
+
+        LOGGER.log(type.toUpperCase() + " -- " + message);
     }
 
     public static void logChatMessage(String message, Player player) {
@@ -257,6 +261,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         } catch (Exception e) {
             System.out.println("Could not send message to Discord log channel: " + e.getMessage());
         }
+
+        LOGGER.log("CHAT_MESSAGE by " + player.getName() + " -- " + message);
     }
 
     public static void logPLayer(boolean joined, Player player) {
@@ -276,6 +282,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         } catch (Exception e) {
             System.out.println("Could not send message to Discord log channel: " + e.getMessage());
         }
+
+        LOGGER.log(joined ? "JOIN" : "LEAVE" + " -- " + player.getName());
     }
 
     public static void logShopPurchase(String item, Player player) {
@@ -291,6 +299,8 @@ public final class GlitzoriumSMP extends JavaPlugin {
         } catch (Exception e) {
             System.out.println("Could not send message to Discord log channel: " + e.getMessage());
         }
+
+        LOGGER.log("SHOP_PURCHASE -- " + player.getName() + " bought " + item);
     }
 
     private static void maybeFixLog() {
